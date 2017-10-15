@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+    var seriesTitle = "The Amazing Spider-Man";
+    var issueNumber = 700;
+    var description = "<p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives... <strong>will Peter Parker?</strong></p>";
+    var artists = new string[]
+    {
+        "Script: Dan Slott",
+        "Pencils: Humberto Ramos",
+        "Inks: Victor Olazaba",
+        "Colors: Edgar Delgado",
+        "Letters: Chris Eliopoulos"
+    };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello from detail</title>
+</head>
+<body>
+    <div>
+        Hello from detail.
+        @seriesTitle
+        <br>
+        @issueNumber
+        <br>
+
+        @Html.Raw(description)
+        
+
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@ namespace BookGallery.Controllers
 
         public ActionResult Detail()
         {
-            return new RedirectResult("/", true);
+            return View();
         }
         // GET: BookGallery
         public ActionResult Index()

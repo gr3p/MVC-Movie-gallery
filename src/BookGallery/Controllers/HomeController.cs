@@ -9,12 +9,9 @@ namespace BookGallery.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ContentResult Index()
+        public ActionResult Index()
         {
-            return new ContentResult()
-            {
-                Content ="hej igen fårn content result"
-            };
+            return View();
         }
     }
 }
