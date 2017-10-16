@@ -1,28 +1,30 @@
 ﻿@{
-   
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Books Details.";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello from detail</title>
-</head>
-<body>
+
+
+<h1>@ViewBag.SeriesTitle</h1>
+<h2>@ViewBag.IssueNumber</h2>
+
+<h5>Description:</h5>
+<div>
+    @Html.Raw(@ViewBag.Description)
+</div>
+
+
+
+    <h5>Artists:</h5>
     <div>
-        Hello from detail.
-        @ViewBag.SeriesTitle
-        <br>
-         @ViewBag.IssueNumber
-        <br>
-
-        @Html.Raw(@ViewBag.Description)
-        <br>
-        <div>
-             
-        </div>
-
+        <ul>
+        @foreach (var artist in ViewBag.Artists)
+        {
+            <li>@artist</li>
+        }
+        </ul>
     </div>
-</body>
-</html>
+
+
