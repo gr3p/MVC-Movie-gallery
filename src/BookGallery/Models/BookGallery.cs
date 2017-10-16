@@ -15,16 +15,9 @@ namespace BookGallery.Models
         public Artist[] Artists { get; set; }
         public bool Favorite { get; set; }
 
-        public string DisplayText
-        {
-            get { return SeriesTitle + " #" + IssueNumber; }
-        }
-        
-        //Images Scheme: series-title-issuenumber.jpg
-        public string CoverImageFileName
-        {
-            get { return SeriesTitle.Replace(" ", "-").ToLower() + "-" + IssueNumber + ".jpg"; }
-        }
+        public string DisplayText => SeriesTitle + " #" + IssueNumber;
 
+        //Images Schema: series-title-issuenumber.jpg
+        public string CoverImageFileName => SeriesTitle.Replace(" ", "-").ToLower() + "-" + IssueNumber + ".jpg";
     }
 }
