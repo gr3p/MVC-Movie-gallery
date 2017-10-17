@@ -6,7 +6,7 @@ using System.Web;
 
 namespace BookGallery.Models
 {
-    public class BookGallery
+    public class BookGalleryItem
     {
         public int Id { get; set; }
         public string SeriesTitle { get; set; }
