@@ -13,24 +13,23 @@
         <div class="well">
             <h5><label>Series Title:</label>@Model.SeriesTitle</h5>
             <h5><label>Issue #:</label> @Model.IssueNumber</h5>
-            <h5><label>Favorite:</label>@Model.Favorite</h5>
+            <h5><label>Favorite:</label>@(Model.Favorite ? " Yes" : " No")</h5>
             <h5>Artists:</h5>
             <div>
                 <ul>
-                    <li>Script: Dan Slott</li>
-                    <li>Pencils: Humberto Ramos</li>
-                    <li>Inks: Victor Olazaba</li>
-                    <li>Colors: Edgar Delgado</li>
-                    <li>Letters: Chris Eliopoulos</li>
+                @foreach (var artist in Model.Artists)
+                {
+                    <li>@artist.Role: @artist.Name</li>
+                }
                 </ul>
             </div>
         </div>
-        <h5>Description</h5>
-        <p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives...<strong>will Peter Parker?</strong></p>
+        <h5>Description:</h5>
+        <div>@Html.Raw(Model.DescriptionHtml)</div>
     </div>
     <div class="col-md-6">
-        <img src="/Images/the-amazing-spider-man-700.jpg" 
-             alt="The Amazing Spider-Man #700" class="img-responsive" />
+        <img src="/Images/@Model.CoverImageFileName" 
+             alt="@Model.DisplayText" class="img-responsive" />
     </div>
 </div>
 
