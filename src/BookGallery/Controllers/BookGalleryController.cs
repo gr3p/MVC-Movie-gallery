@@ -30,7 +30,8 @@ namespace BookGallery.Controllers
         // GET: BookGallery
         public ActionResult Index()
         {
-            return View();
+            var bookGalleries = _bookGalleryRepository.GetBookGalleryItems();
+            return View(bookGalleries);
         }
     }
 }
