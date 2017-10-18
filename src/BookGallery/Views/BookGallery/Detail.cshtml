@@ -1,4 +1,4 @@
-﻿@model List<BookGallery.Models.BookGalleryItem>
+﻿@model BookGallery.Models.BookGalleryItem
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,21 +6,18 @@
     
 }
 
-@foreach (var comicBook in Model)
-{
-
-    <h2>@comicBook.DisplayText</h2>
+    <h2>@Model.DisplayText</h2>
 
     <div class="row">
         <div class="col-md-6">
             <div class="well">
-                <h5><label>Series Title:</label>@comicBook.SeriesTitle</h5>
-                <h5><label>Issue #:</label> @comicBook.IssueNumber</h5>
-                <h5><label>Favorite:</label>@(comicBook.Favorite ? " Yes" : " No")</h5>
+                <h5><label>Series Title:</label>@Model.SeriesTitle</h5>
+                <h5><label>Issue #:</label> @Model.IssueNumber</h5>
+                <h5><label>Favorite:</label>@(Model.Favorite ? " Yes" : " No")</h5>
                 <h5>Artists:</h5>
                 <div>
                     <ul>
-                        @foreach (var artist in comicBook.Artists)
+                        @foreach (var artist in Model.Artists)
                         {
                             <li>@artist.Role: @artist.Name</li>
                         }
@@ -28,12 +25,12 @@
                 </div>
             </div>
             <h5>Description:</h5>
-            <div>@Html.Raw(comicBook.DescriptionHtml)</div>
+            <div>@Html.Raw(Model.DescriptionHtml)</div>
         </div>
         <div class="col-md-6">
-            <img src="/Images/@comicBook.CoverImageFileName"
-                 alt="@comicBook.DisplayText" class="img-responsive"/>
+            <img src="/Images/@Model.CoverImageFileName"
+                 alt="@Model.DisplayText" class="img-responsive"/>
         </div>
     </div>
-}
+
 
