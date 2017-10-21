@@ -2,11 +2,15 @@
 @{
 
 }
-    <h2>@Model.DisplayText</h2>
-
+  
+<div class="row">
+    <div class="col-md-12"><h5>@Html.ActionLink("Go Back", "Index")</h5> </div>
+</div>
+<h2>@Model.DisplayText</h2>
     <div class="row">
         <div class="col-md-6">
             <div class="well">
+              
                 <h5><label>Series Title:</label>@Model.SeriesTitle</h5>
                 <h5><label>Issue #:</label> @Model.IssueNumber</h5>
                 <h5><label>Favorite:</label>@(Model.Favorite ? " Yes" : " No")</h5>

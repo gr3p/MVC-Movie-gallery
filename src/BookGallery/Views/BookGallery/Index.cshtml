@@ -9,7 +9,7 @@
     @foreach (var bookItem in Model)
     {
         <div class="col-md-3">
-            <h4>@bookItem.DisplayText</h4>
+            <h4>@Html.ActionLink(@bookItem.DisplayText,"Detail", new{ Id = bookItem.Id})</h4>
             <img src="/Images/@bookItem.CoverImageFileName"
                  alt="@bookItem.DisplayText"
                  class="img-responsive"/>
