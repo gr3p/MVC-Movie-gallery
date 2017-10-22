@@ -41,10 +41,10 @@ namespace BookGallery.Controllers
         }
 
         [HttpPost]
-        public ActionResult LookUpMovie(string searchString)
+        public ActionResult LookUpMovie(string movieToFind)
         {
-            ViewBag.SearchingFor = searchString;
-            var movieItem = new MovieGalleryRepository().SearchForAMovie(searchString);
+            ViewBag.SearchingFor = movieToFind;
+            var movieItem = new MovieGalleryRepository().SearchForAMovie(movieToFind);
            
             return View(movieItem);
         }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Amazing Book Gallery</title>
+    <title>@ViewBag.Title - Amazing Movie Gallery</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Book Gallery", "Index", "BookGallery", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Movie Gallery", "Index", "BookGallery", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -36,6 +36,15 @@
             </div>
         </div>
     }
+@if (ViewBag.SearchMovie != null && ViewBag.SearchMovie)
+{
+    <div class="backbar">
+        <div class="container">
+            @Html.ActionLink("Search Movie", "LookUpMovie", null, new{ @class = "btn btn-default" })
+              
+        </div>
+    </div>
+}
     <div class="container body-content">
         @RenderBody()
         <hr />

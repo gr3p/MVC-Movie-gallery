@@ -16,7 +16,7 @@ namespace BookGallery.Data
             
         }
 
-        public MovieItem SearchForAMovie(string SearchText)
+        public MovieSearchItems SearchForAMovie(string SearchText)
         {
             return API.MovieHttpClient.GetMovieResults(SearchText);
 

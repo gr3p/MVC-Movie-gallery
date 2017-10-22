@@ -119,7 +119,7 @@
     </Compile>
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\BookGalleryItem.cs" />
-    <Compile Include="Models\MovieItem.cs" />
+    <Compile Include="Models\MovieSearchItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
