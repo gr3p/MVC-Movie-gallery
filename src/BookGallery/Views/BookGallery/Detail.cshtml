@@ -1,11 +1,9 @@
 ﻿@model BookGallery.Models.BookGalleryItem
 @{
-
+    ViewBag.ShowBackBar = true;
 }
   
-<div class="row">
-    <div class="col-md-12"><h5>@Html.ActionLink("Go Back", "Index")</h5> </div>
-</div>
+
 <h2>@Model.DisplayText</h2>
     <div class="row">
         <div class="col-md-6">

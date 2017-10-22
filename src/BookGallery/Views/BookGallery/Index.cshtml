@@ -1,18 +1,19 @@
 ﻿@model List<BookGallery.Models.BookGalleryItem>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Book Gallery";
    
 }
-<h2>Index</h2>
+<h2>Overview</h2>
 
 <div class="row">
     @foreach (var bookItem in Model)
     {
         <div class="col-md-3">
             <h4>@Html.ActionLink(@bookItem.DisplayText,"Detail", new{ Id = bookItem.Id})</h4>
-            <img src="/Images/@bookItem.CoverImageFileName"
-                 alt="@bookItem.DisplayText"
-                 class="img-responsive"/>
+            <a href=@Url.Action("Detail",new{id = bookItem.Id})>
+           
+                <img src="/Images/@bookItem.CoverImageFileName" alt="@bookItem.DisplayText" class="img-responsive"/>
+            </a>
         </div>
     }
    
