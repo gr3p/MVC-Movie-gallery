@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookGallery.Data;
@@ -32,6 +33,20 @@ namespace BookGallery.Controllers
         {
             var bookGalleries = _bookGalleryRepository.GetBookGalleryItems();
             return View(bookGalleries);
+        }
+
+        public ActionResult LookUpMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LookUpMovie(string searchString)
+        {
+            ViewBag.SearchingFor = searchString;
+            var movieItem = new MovieGalleryRepository().SearchForAMovie(searchString);
+           
+            return View(movieItem);
         }
     }
 }

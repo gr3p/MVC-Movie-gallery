@@ -1,0 +1,28 @@
+﻿@model BookGallery.Models.MovieItem
+@{
+    ViewBag.Title = "LookUpMovie";
+}
+
+<h2>Lookup A Movie</h2>
+
+
+<div class="row">
+    
+    <div class="col-md-12">
+    @using (Html.BeginForm("LookUpMovie", "BookGallery", FormMethod.Post))
+    {
+        <div class="well">
+            <h4>Search:</h4>
+            <input type="text" id="movieToFind" name="movieToFind"/>
+            <input type="submit" id="submitId" value="submit" />
+            @if(ViewBag.SearchKey != null)
+            {
+            <span>
+                Search Key: @ViewBag.SearchKey +"..."
+            </span>
+            }
+        </div>
+    }
+
+    </div>
+</div>
