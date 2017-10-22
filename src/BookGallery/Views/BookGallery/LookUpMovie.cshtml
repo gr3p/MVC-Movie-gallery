@@ -1,4 +1,4 @@
-﻿@model BookGallery.Models.MovieSearchItems
+@model BookGallery.Models.MovieSearchItems
 @{
     ViewBag.Title = "LookUpMovie";
     ViewBag.ShowBackBar = true;
@@ -6,68 +6,65 @@
 
 }
 
-<h2>Lookup A Movie</h2>
 
 
-<div class="row">
-    
-    <div class="col-md-12">
-    @using (Html.BeginForm("LookUpMovie", "BookGallery", FormMethod.Post))
-    {
-        <div class="well">
-            <h4>Search:</h4>
-            <input type="text" id="movieToFind" name="movieToFind"/>
-            <input type="submit" id="submitId" value="submit" />
-            @if(ViewBag.SearchKey != null)
+
+
+   
+        <h2>Search For Movie</h2>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("LookUpMovie", "BookGallery", FormMethod.Post))
             {
-            <span>
-                Search Key: @ViewBag.SearchKey +"..."
-            </span>
+                <div class="well">
+                    <h4>Search:</h4>
+                    <input type="text" id="movieToFind" name="movieToFind"/>
+                    <input class="btn-submit" type="submit" id="submitId" value="Submit" />
+                    @if(ViewBag.SearchKey != null)
+                    {
+                        <span>
+                            Search Key: @ViewBag.SearchKey +"..."
+                        </span>
+                    }
+                </div>
             }
-        </div>
-    }
-        @if (Model != null)
-        {
-            
-            <h2>Hits: @(Model.MovieItems?.Length.ToString() ?? "0") </h2>
-
-            if (Model.MovieItems != null)
+            @if (Model != null)
             {
-                foreach (var movie in Model.MovieItems)
+            
+                <h2>@(Model.MovieItems?.Length.ToString() ?? "0") hits </h2>
+
+                if (Model.MovieItems != null)
                 {
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="well">
-
-                                <h5>
-                                    <label>Movie Title: </label>@movie.title</h5>
-                                <h5>
-                                    <label>Release Date: </label> @movie.release_date</h5>
-                                <h5>
-                                    <label>Popularity: </label>@movie.popularity</h5>
-                                <h5>
-                                    <label>Vote Average: </label>@movie.vote_average</h5>
-
-                                @*<div>
-                            <ul>
-                                @foreach (var artist in Model.Artists)
-                                {
-                                    <li>@artist.Role: @artist.Name</li>
-                                }
-                            </ul>
-                        </div>*@
+                    foreach (var movie in Model.MovieItems)
+                    {
+                        <div class="row row-space">
+                            <div class="col-md-3">
+                                <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
+                                     alt="@movie.title" class="poster img-responsive"/>
                             </div>
-                            <h5>Description:</h5>
-                            <div>@movie.overview</div>
+                            <div class="col-md-9">
+                                <div class="well">
+
+                                    <h5>
+                                        <label>Movie Title:&nbsp;</label>@movie.title</h5>
+                                    <h5>
+                                        <label>Release Date:&nbsp;</label> @movie.release_date</h5>
+                                    <h5>
+                                        <label>Popularity:&nbsp;</label>@movie.popularity</h5>
+                                    <h5>
+                                        <label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
+
+
+                                </div>
+                                <h4>Description</h4>
+                                <div>@movie.overview</div>
+                            </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
-                                 alt="@movie.title" class="img-responsive"/>
-                        </div>
-                    </div>
+                    }
                 }
             }
-        }
 
+        </div>
     </div>
-</div>
+
