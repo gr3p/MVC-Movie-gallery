@@ -12,7 +12,7 @@
     @foreach (var movie in Model.MovieItems)
     {
         <div class="col-md-3">
-            <h5><label>Movie Title:&nbsp;</label>@movie.title</h5>
+            <h4>@movie.title</h4>
             <h5><label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
             @*<h4>@Html.ActionLink(@bookItem.DisplayText,"Detail", new{ Id = bookItem.Id})</h4>*@
             @*<a href=@Url.Action("Detail", new {id = bookItem.Id})>
