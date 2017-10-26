@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BookGallery.Data;
 using BookGallery.Models;
+using BookGallery.Models.ViewModels;
 
 namespace BookGallery.Controllers
 {
@@ -44,9 +45,10 @@ namespace BookGallery.Controllers
         public ActionResult LookUpMovie(string movieToFind)
         {
             ViewBag.SearchingFor = movieToFind;
-            var movieItem = new MovieGalleryRepository().SearchForAMovie(movieToFind);
-           
-            return View(movieItem);
+            var movieRepository = new MovieGalleryRepository();
+            var movieItem = movieRepository.SearchForAMovie(movieToFind);
+            var viewModel = new SearchMovieViewModel<MovieSearchItems>(movieRepository, movieItem.MovieItems, movieItem.page, movieItem.total_pages, movieItem.total_results);
+            return View(viewModel);
         }
     }
 }

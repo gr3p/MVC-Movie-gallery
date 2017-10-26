@@ -1,4 +1,7 @@
-@model BookGallery.Models.MovieSearchItems
+@using BookGallery.Models;
+@using BookGallery.Models.ViewModels;
+
+@model  SearchMovieViewModel<MovieSearchItems>
 @{
     ViewBag.Title = "LookUpMovie";
     ViewBag.ShowBackBar = true;
@@ -6,11 +9,6 @@
 
 }
 
-
-
-
-
-   
         <h2>Search For Movie</h2>
     <div class="row">
         <div class="col-md-12">
@@ -45,14 +43,11 @@
                             <div class="col-md-9">
                                 <div class="well">
 
-                                    <h5>
-                                        <label>Movie Title:&nbsp;</label>@movie.title</h5>
-                                    <h5>
-                                        <label>Release Date:&nbsp;</label> @movie.release_date</h5>
-                                    <h5>
-                                        <label>Popularity:&nbsp;</label>@movie.popularity</h5>
-                                    <h5>
-                                        <label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
+                                    <h5><label>Movie Title:&nbsp;</label>@movie.title</h5>
+                                    <h5><label>Genre:&nbsp;</label>@String.Join(", ", movie.GenreStrings)</h5>
+                                    <h5><label>Release Date:&nbsp;</label> @movie.release_date</h5>
+                                    <h5><label>Popularity:&nbsp;</label>@movie.popularity</h5>
+                                    <h5><label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
 
 
                                 </div>

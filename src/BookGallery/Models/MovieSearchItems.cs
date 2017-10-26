@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace BookGallery.Models
 {
 
-    public class MovieSearchItems
+    public class MovieSearchItems : IMovieSearchItems
     {
         public int page { get; set; }
         public int total_results { get; set; }
@@ -28,6 +28,7 @@ namespace BookGallery.Models
         public string original_language { get; set; }
         public string original_title { get; set; }
         public int?[] genre_ids { get; set; }
+        public List<string> GenreStrings { get; set; } = new List<string>();
         public string backdrop_path { get; set; }
         public bool adult { get; set; }
         public string overview { get; set; }

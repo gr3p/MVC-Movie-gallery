@@ -117,9 +117,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\API\MovieGenres.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\BookGalleryItem.cs" />
+    <Compile Include="Models\IMovieSearchItems.cs" />
     <Compile Include="Models\MovieSearchItems.cs" />
+    <Compile Include="Models\ViewModels\SearchMovieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
