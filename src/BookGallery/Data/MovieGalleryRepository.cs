@@ -23,5 +23,10 @@ namespace BookGallery.Data
             return API.MovieHttpClient.GetMovieResults(SearchText);
 
         }
+
+        public MovieSearchItems GetMostPopularMovies()
+        {
+            return API.MovieHttpClient.GetPopularMovies();
+        }
     }
 }

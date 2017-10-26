@@ -1,19 +1,26 @@
-﻿@model List<BookGallery.Models.BookGalleryItem>
+﻿@using BookGallery.Models;
+@using BookGallery.Models.ViewModels;
+
+@model SearchMovieViewModel<MovieSearchItems>
 @{
-    ViewBag.Title = "Book Gallery";
+    ViewBag.Title = "Popular Movies";
     ViewBag.SearchMovie = true;
 
 }
 <h2>Overview</h2>
 <div class="row">
-    @foreach (var bookItem in Model)
+    @foreach (var movie in Model.MovieItems)
     {
         <div class="col-md-3">
-            <h4>@Html.ActionLink(@bookItem.DisplayText,"Detail", new{ Id = bookItem.Id})</h4>
-            <a href=@Url.Action("Detail",new{id = bookItem.Id})>
-           
-                <img src="/Images/@bookItem.CoverImageFileName" alt="@bookItem.DisplayText" class="img-responsive"/>
-            </a>
+            <h5><label>Movie Title:&nbsp;</label>@movie.title</h5>
+            <h5><label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
+            @*<h4>@Html.ActionLink(@bookItem.DisplayText,"Detail", new{ Id = bookItem.Id})</h4>*@
+            @*<a href=@Url.Action("Detail", new {id = bookItem.Id})>
+
+             
+            </a>*@
+            <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
+                 alt="@movie.title" class="poster img-responsive"/>
         </div>
     }
    

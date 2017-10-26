@@ -16,7 +16,7 @@ namespace BookGallery.API
     {
         private static string ApiKey => "76b3c69a02263d0d7ff63b212d1e2c40";
         /// <summary>
-        /// API Resources here: https://developers.themoviedb.org/3/movies/get-popular-movies
+        /// API Resources here: https://developers.themoviedb.org/ och https://www.themoviedb.org/documentation/api
         /// API KEY: 76b3c69a02263d0d7ff63b212d1e2c40
         /// </summary>
         /// <param name="searchFor"></param>
@@ -59,6 +59,24 @@ namespace BookGallery.API
 
         }
 
+        public static MovieSearchItems GetPopularMovies()
+        {
+            var results = new MovieSearchItems();
+            var webc = new WebClient();
+            var url = $"https://api.themoviedb.org/3/movie/popular?api_key={ApiKey}&language=en-US&page=1";
+
+            var searchResult = webc.DownloadData(url);
+            var serializ = new JsonSerializer();
+            using (var stream = new MemoryStream(searchResult))
+            using (var reader = new StreamReader(stream))
+
+            using (var jsonreader = new JsonTextReader(reader))
+            {
+                results = serializ.Deserialize<MovieSearchItems>(jsonreader);
+            }
+            return results;
+
+        }
 
 
 

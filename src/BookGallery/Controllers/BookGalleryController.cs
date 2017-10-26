@@ -29,11 +29,13 @@ namespace BookGallery.Controllers
 
             return View(comicBooks);
         }
-        // GET: BookGallery
+        
         public ActionResult Index()
         {
-            var bookGalleries = _bookGalleryRepository.GetBookGalleryItems();
-            return View(bookGalleries);
+            var repo = new MovieGalleryRepository();
+            var movieRepo = repo.GetMostPopularMovies();
+            var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
+            return View(viewModel);
         }
 
         public ActionResult LookUpMovie()
