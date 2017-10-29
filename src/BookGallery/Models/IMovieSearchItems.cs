@@ -1,4 +1,4 @@
-﻿namespace BookGallery.Models
+﻿namespace MovieGallery.Models
 {
     public interface IMovieSearchItems
     {

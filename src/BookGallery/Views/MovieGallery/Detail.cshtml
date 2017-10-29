@@ -1,0 +1,36 @@
+﻿@model MovieGallery.Models.MovieDetailsItem
+
+@*@model MovieGallery.Models.MovieDetailsItem*@
+@{
+    ViewBag.ShowBackBar = true;
+}
+  
+
+<h2>@Model.title</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well">
+              
+                <h5><label>Series Title:</label>@Model.imdb_id</h5>
+                <h5><label>Language</label> @Model.original_language</h5>
+                <h5><label>Release date:</label>@(Model.release_date)</h5>
+                <h5>Artists:</h5>
+                <div>
+                    <ul>
+                        @foreach (var spokenLanguage in Model.spoken_languages)
+                        {
+                            <li>@spokenLanguage.name</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <h5>Description:</h5>
+            <div>@Html.Raw(Model.overview)</div>
+        </div>
+        <div class="col-md-6">
+            <img src="/Images/@Model.poster_path"
+                 alt="@Model.title" class="img-responsive"/>
+        </div>
+    </div>
+
+

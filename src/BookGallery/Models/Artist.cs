@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BookGallery.Models
+namespace MovieGallery.Models
 {
     public class Artist
     {

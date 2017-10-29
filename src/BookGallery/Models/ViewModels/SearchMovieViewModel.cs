@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BookGallery.Data;
-using BookGallery.Models.API;
+using MovieGallery.Data;
+using MovieGallery.Models.API;
 
-namespace BookGallery.Models.ViewModels
+namespace MovieGallery.Models.ViewModels
 {
     public class SearchMovieViewModel<T> : IMovieSearchItems
     {
-        public Genre[] gengres { get; }
+        public API.Genre[] gengres { get; }
         public MovieItem[] MovieItems { get; set; }
         public int page { get; set; }
         public int total_pages { get; set; }

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace BookGallery
+namespace MovieGallery
 {
     public class RouteConfig
     {
@@ -16,7 +16,7 @@ namespace BookGallery
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "BookGallery", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "MovieGallery", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

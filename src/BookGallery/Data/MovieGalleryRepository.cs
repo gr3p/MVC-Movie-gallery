@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
-using BookGallery.Models;
-using BookGallery.Models.API;
+using MovieGallery.Models;
+using MovieGallery.Models.API;
 
-namespace BookGallery.Data
+namespace MovieGallery.Data
 {
     public class MovieGalleryRepository
     {
@@ -21,6 +21,11 @@ namespace BookGallery.Data
         public MovieSearchItems SearchForAMovie(string SearchText)
         {
             return API.MovieHttpClient.GetMovieResults(SearchText);
+
+        }
+        public MovieDetailsItem GetDetailsAboutMovie(int? movieId)
+        {
+            return API.MovieHttpClient.GetDetailedMovieResults(movieId);
 
         }
 

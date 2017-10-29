@@ -1,5 +1,5 @@
-@using BookGallery.Models;
-@using BookGallery.Models.ViewModels;
+@using MovieGallery.Models;
+@using MovieGallery.Models.ViewModels;
 
 @model  SearchMovieViewModel<MovieSearchItems>
 @{
@@ -12,7 +12,7 @@
         <h2>Search For Movie</h2>
     <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm("LookUpMovie", "BookGallery", FormMethod.Post))
+            @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
             {
                 <div class="well">
                     <h4>Search:</h4>

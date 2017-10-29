@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Web;
 
-namespace BookGallery.Models
+namespace MovieGallery.Models
 {
     public class BookGalleryItem
     {

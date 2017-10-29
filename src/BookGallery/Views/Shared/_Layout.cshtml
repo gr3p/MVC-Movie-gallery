@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Movie Gallery", "Index", "BookGallery", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Movie Gallery", "Index", "MovieGallery", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -31,7 +31,7 @@
     {
         <div class="backbar">
             <div class="container">
-               @Html.ActionLink("Return To Overview","Index", null, new{ @class = "btn btn-default" })
+               @Html.ActionLink("Return To Overview","Index","MovieGallery", null, new{ @class = "btn btn-default" })
               
             </div>
         </div>
@@ -40,7 +40,7 @@
 {
     <div class="backbar">
         <div class="container">
-            @Html.ActionLink("Search Movie", "LookUpMovie", null, new{ @class = "btn btn-default" })
+            @Html.ActionLink("Search Movie","LookUpMovie", "MovieGallery", null, new{ @class = "btn btn-default" })
               
         </div>
     </div>

@@ -6,11 +6,12 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
-using BookGallery.Models;
-using BookGallery.Models.API;
+using MovieGallery.Models;
+using MovieGallery.Models;
+using MovieGallery.Models.API;
 using Newtonsoft.Json;
 
-namespace BookGallery.API
+namespace MovieGallery.API
 {
     public class MovieHttpClient
     {
@@ -40,9 +41,30 @@ namespace BookGallery.API
 
         }
 
+        public static MovieDetailsItem GetDetailedMovieResults(int? movieId)
+        {
+            MovieDetailsItem results;
+            var webc = new WebClient();
+            
+            var url = $"https://api.themoviedb.org/3/movie/{movieId}?api_key={ApiKey}&language=en-US";
+
+            var searchResult = webc.DownloadData(url);
+            var serializ = new JsonSerializer();
+            using (var stream = new MemoryStream(searchResult))
+            using (var reader = new StreamReader(stream))
+
+            using (var jsonreader = new JsonTextReader(reader))
+            {
+                results = serializ.Deserialize<MovieDetailsItem>(jsonreader);
+            }
+            return results;
+
+        }
+
+       
         public static MovieGenres GetMovieGenres()
         {
-            var genres = new MovieGenres();
+            MovieGenres genres;
             var webc = new WebClient();
             var url = $"http://api.themoviedb.org/3/genre/movie/list?api_key={ApiKey}";
 
@@ -61,7 +83,7 @@ namespace BookGallery.API
 
         public static MovieSearchItems GetPopularMovies()
         {
-            var results = new MovieSearchItems();
+            MovieSearchItems results;
             var webc = new WebClient();
             var url = $"https://api.themoviedb.org/3/movie/popular?api_key={ApiKey}&language=en-US&page=1";
 

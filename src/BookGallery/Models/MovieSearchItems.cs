@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace BookGallery.Models
+namespace MovieGallery.Models
 {
 
     public class MovieSearchItems : IMovieSearchItems

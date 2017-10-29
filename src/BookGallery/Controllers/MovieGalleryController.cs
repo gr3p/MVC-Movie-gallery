@@ -4,19 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BookGallery.Data;
-using BookGallery.Models;
-using BookGallery.Models.ViewModels;
+using MovieGallery.Data;
+using MovieGallery.Models;
+using MovieGallery.Models.ViewModels;
 
-namespace BookGallery.Controllers
+namespace MovieGallery.Controllers
 {
-    public class BookGalleryController : Controller
+    public class MovieGalleryController : Controller
     {
-        private readonly BookGalleryRepository _bookGalleryRepository;
+        
 
-        public BookGalleryController()
+        public MovieGalleryController()
         {
-            _bookGalleryRepository = new BookGalleryRepository();
+           
         }
 
         public ActionResult Detail(int? id)
@@ -25,9 +25,10 @@ namespace BookGallery.Controllers
             {
                 return HttpNotFound();
             }
-           var comicBooks = _bookGalleryRepository.GetBookGalleryItem(id.Value);
+           
+            var detailsAboutMovie = new MovieGalleryRepository().GetDetailsAboutMovie(id);
 
-            return View(comicBooks);
+            return View();
         }
         
         public ActionResult Index()

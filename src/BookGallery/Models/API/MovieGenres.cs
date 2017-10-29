@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace BookGallery.Models.API
+namespace MovieGallery.Models.API
 {
 
     public class MovieGenres
