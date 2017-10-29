@@ -23,7 +23,7 @@ namespace MovieGallery.Data
             return API.MovieHttpClient.GetMovieResults(SearchText);
 
         }
-        public MovieDetailsItem GetDetailsAboutMovie(int? movieId)
+        public MovieDetailsItem GetDetailsAboutMovie(int movieId)
         {
             return API.MovieHttpClient.GetDetailedMovieResults(movieId);
 

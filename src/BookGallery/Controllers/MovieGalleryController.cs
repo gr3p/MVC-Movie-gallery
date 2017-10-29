@@ -19,16 +19,16 @@ namespace MovieGallery.Controllers
            
         }
 
-        public ActionResult Detail(int? id)
+        public ActionResult Detail(int id)
         {
-            if(id == null)
+            if(id == 0)
             {
                 return HttpNotFound();
             }
            
             var detailsAboutMovie = new MovieGalleryRepository().GetDetailsAboutMovie(id);
 
-            return View();
+            return View(detailsAboutMovie);
         }
         
         public ActionResult Index()

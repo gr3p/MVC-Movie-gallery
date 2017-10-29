@@ -41,7 +41,7 @@ namespace MovieGallery.API
 
         }
 
-        public static MovieDetailsItem GetDetailedMovieResults(int? movieId)
+        public static MovieDetailsItem GetDetailedMovieResults(int movieId)
         {
             MovieDetailsItem results;
             var webc = new WebClient();

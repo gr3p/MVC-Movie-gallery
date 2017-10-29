@@ -1,6 +1,5 @@
 ﻿@model MovieGallery.Models.MovieDetailsItem
 
-@*@model MovieGallery.Models.MovieDetailsItem*@
 @{
     ViewBag.ShowBackBar = true;
 }
@@ -28,7 +27,7 @@
             <div>@Html.Raw(Model.overview)</div>
         </div>
         <div class="col-md-6">
-            <img src="/Images/@Model.poster_path"
+            <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
                  alt="@Model.title" class="img-responsive"/>
         </div>
     </div>
