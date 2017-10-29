@@ -10,10 +10,10 @@
         <div class="col-md-6">
             <div class="well">
               
-                <h5><label>Series Title:</label>@Model.imdb_id</h5>
-                <h5><label>Language</label> @Model.original_language</h5>
-                <h5><label>Release date:</label>@(Model.release_date)</h5>
-                <h5>Artists:</h5>
+                <h5><a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">IMDB</a></h5>
+                <h5><label>Language:&nbsp;</label> @Model.original_language</h5>
+                <h5><label>Release date:&nbsp;</label>@(Model.release_date)</h5>
+                <h5>Languages:</h5>
                 <div>
                     <ul>
                         @foreach (var spokenLanguage in Model.spoken_languages)
