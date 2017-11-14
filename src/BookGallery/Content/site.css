@@ -53,7 +53,9 @@ textarea {
     padding-bottom: 40px;
 }
 
-
+.poster {
+    padding-top: 10px;
+}
 
 #custom-search-input {
     margin:0;
