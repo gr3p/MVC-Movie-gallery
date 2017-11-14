@@ -14,7 +14,7 @@
         <div class="col-md-3">
             <a href=@Url.Action("Detail", new {id = movie.id})>
                 <h4>@movie.title</h4>
-                <h5><label>Vote Average:&nbsp;</label>@movie.vote_average</h5>
+                <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</h5>
                 <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
                      alt="@movie.title" class="poster img-responsive" />
             </a>
