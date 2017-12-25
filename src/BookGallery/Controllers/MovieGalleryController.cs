@@ -14,11 +14,6 @@ namespace MovieGallery.Controllers
     {
         
 
-        public MovieGalleryController()
-        {
-           
-        }
-
         public ActionResult Detail(int id)
         {
             if(id == 0)
@@ -43,6 +38,13 @@ namespace MovieGallery.Controllers
         {
             return View();
         }
+
+
+        //public ActionResult LookUpLocalMovies()
+        //{
+        //    var getLocalMoviesFromFolder = 
+        //    return View();
+        //}
 
         [HttpPost]
         public ActionResult LookUpMovie(string movieToFind)
