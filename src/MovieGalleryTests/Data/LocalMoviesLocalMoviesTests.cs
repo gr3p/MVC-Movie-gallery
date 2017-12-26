@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieGallery.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MovieGallery.Data.Tests
+namespace MovieGalleryTests.Data
 {
     [TestClass()]
     public class LocalMoviesLocalMoviesTests

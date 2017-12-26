@@ -40,11 +40,18 @@ namespace MovieGallery.Controllers
         }
 
 
-        //public ActionResult LookUpLocalMovies()
-        //{
-        //    var getLocalMoviesFromFolder = 
-        //    return View();
-        //}
+        public ActionResult LookUpLocalMovies()
+        {
+            using (var context = new Context.Context())
+            {
+
+
+                var comicBooks = context.movieSearchItems.ToList();
+
+
+                return View(comicBooks);
+            }
+        }
 
         [HttpPost]
         public ActionResult LookUpMovie(string movieToFind)

@@ -102,3 +102,10 @@ input[type=text] {
     padding: 5px;
 }
 .row-space{margin-top: 30px;}
+
+i.fa-star {
+    color: orange;
+    display: inline;
+    size: 3px;
+    font-size: 15px;
+}

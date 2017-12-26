@@ -27,11 +27,13 @@ namespace MovieGallery.Data
             string pattern = @"(19|20)\d{2}";
             foreach (var movieTitle in movieList)
             {
-                int index = Regex.Match(movieTitle, pattern).Index + 4;
+                int index = Regex.Match(movieTitle, pattern).Index ;
                 output.Add( movieTitle.Substring(0, index).Replace('.', ' '));
 
             }
             return output;
         }
+
+
     }
 }

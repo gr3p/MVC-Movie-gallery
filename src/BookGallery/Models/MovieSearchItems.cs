@@ -9,6 +9,7 @@ namespace MovieGallery.Models
 
     public class MovieSearchItems : IMovieSearchItems
     {
+        public int Id { get; set; }
         public int page { get; set; }
         public int total_results { get; set; }
         public int total_pages { get; set; }
@@ -33,6 +34,7 @@ namespace MovieGallery.Models
         public bool adult { get; set; }
         public string overview { get; set; }
         public string release_date { get; set; }
+        public ICollection<MovieSearchItems> MovieSearchItems { get; set; }
     }
 
 
