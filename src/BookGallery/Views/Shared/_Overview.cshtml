@@ -1,0 +1,21 @@
+﻿@using MovieGallery.Models;
+@using MovieGallery.Models.ViewModels;
+
+@model SearchMovieViewModel<MovieSearchItems>
+
+}
+<h2>Overview</h2>
+<div class="row">
+    @foreach (var movie in Model.MovieItems)
+    {
+        <div class="col-md-3">
+            <a href=@Url.Action("Detail","MovieGallery", new {id = movie.id})>
+                <h4>@movie.title</h4>
+                <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</h5>
+                <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
+                     alt="@movie.title" class="poster img-responsive" />
+            </a>
+        </div>
+    }
+
+</div>

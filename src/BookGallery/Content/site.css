@@ -50,7 +50,7 @@ textarea {
   border: none;
 }
 .well {
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }
 
 .poster {
@@ -103,4 +103,11 @@ input[type=text] {
     line-height: 100%;
     padding: 5px;
 }
-.row-space{ margin-top: 30px;}
+.row-space{margin-top: 30px;}
+
+i.fa-star {
+    color: orange;
+    display: inline;
+    size: 3px;
+    font-size: 15px;
+}

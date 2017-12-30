@@ -42,7 +42,7 @@ namespace MovieGallery.API
         }
 
         public static MovieDetailsItem GetDetailedMovieResults(int movieId)
-        {
+        { 
             MovieDetailsItem results;
             var webc = new WebClient();
             
@@ -100,8 +100,27 @@ namespace MovieGallery.API
 
         }
 
+        public static MovieTrailers GetMovieTrailers(int movieId)
+        {
+            MovieTrailers results;
+            var webc = new WebClient();
+            var url = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US";
 
+            var searchResult = webc.DownloadData(url);
+            var serializ = new JsonSerializer();
+            using (var stream = new MemoryStream(searchResult))
+            using (var reader = new StreamReader(stream))
 
+            using (var jsonreader = new JsonTextReader(reader))
+            {
+                results = serializ.Deserialize<MovieTrailers>(jsonreader);
+            }
+            return results;
 
+        }
+        //157336 Interstellar
+        //http://api.themoviedb.org/3/movie/157336/videos?api_key=76b3c69a02263d0d7ff63b212d1e2c40
+        //https://www.youtube.com/watch?v=ePbKGoIGAXY
+        //https://www.themoviedb.org/talk/5451ec02c3a3680245005e3c
     }
 }

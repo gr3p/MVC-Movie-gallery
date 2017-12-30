@@ -14,11 +14,6 @@ namespace MovieGallery.Controllers
     {
         
 
-        public MovieGalleryController()
-        {
-           
-        }
-
         public ActionResult Detail(int id)
         {
             if(id == 0)
@@ -42,6 +37,20 @@ namespace MovieGallery.Controllers
         public ActionResult LookUpMovie()
         {
             return View();
+        }
+
+
+        public ActionResult LookUpLocalMovies()
+        {
+            using (var context = new Context.Context())
+            {
+
+
+                var comicBooks = context.movieSearchItems.ToList();
+
+
+                return View(comicBooks);
+            }
         }
 
         [HttpPost]

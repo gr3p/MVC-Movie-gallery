@@ -41,8 +41,9 @@
 {
     <div class="backbar">
         <div class="container">
-            @Html.ActionLink("Search Movie","LookUpMovie", "MovieGallery", null, new{ @class = "btn btn-default" })
-              
+            @Html.ActionLink("Search Movie", "LookUpMovie", "MovieGallery", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })
+
         </div>
     </div>
 }
@@ -50,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Book Gallery</p>
+            <p>&copy; @DateTime.Now.Year - Movie Gallery</p>
         </footer>
     </div>
 
