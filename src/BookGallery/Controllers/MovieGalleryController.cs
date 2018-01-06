@@ -29,10 +29,19 @@ namespace MovieGallery.Controllers
         public ActionResult Index()
         {
             var repo = new MovieGalleryRepository();
-            var movieRepo = repo.GetMostPopularMovies();
+            var movieRepo = repo.GetRecentReleasedMovies();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
             return View(viewModel);
         }
+        public ActionResult ComingSoon()
+        {
+            var repo = new MovieGalleryRepository();
+            var movieRepo = repo.MoviesComingSoon();
+            var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
+            return View("Index",viewModel);
+        }
+
+
 
         public ActionResult LookUpMovie()
         {

@@ -20,3 +20,6 @@ namespace MovieGallery.Models.Helpers
         }
     }
 }
+
+// using (WebClient client = new WebClient())
+//{

@@ -33,5 +33,14 @@ namespace MovieGallery.Data
         {
             return API.MovieHttpClient.GetPopularMovies();
         }
+
+        public MovieSearchItems GetRecentReleasedMovies()
+        {
+            return API.MovieHttpClient.GetRecentReleasedMovies();
+        }
+        public MovieSearchItems MoviesComingSoon()
+        {
+            return API.MovieHttpClient.GetMoviesComingSoon();
+        }
     }
 }

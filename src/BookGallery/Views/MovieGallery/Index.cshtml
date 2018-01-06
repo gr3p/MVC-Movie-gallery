@@ -3,11 +3,11 @@
 
 @model SearchMovieViewModel<MovieSearchItems>
 @{
-    ViewBag.Title = "Popular Movies";
+    ViewBag.Title = "New Released Movies";
     ViewBag.SearchMovie = true;
 
 }
-<h2>Overview</h2>
+<h2>New Released Movies</h2>
 <div class="row">
     @foreach (var movie in Model.MovieItems)
     {
