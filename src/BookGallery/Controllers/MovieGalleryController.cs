@@ -20,8 +20,10 @@ namespace MovieGallery.Controllers
             {
                 return HttpNotFound();
             }
-           
-            var detailsAboutMovie = new MovieGalleryRepository().GetDetailsAboutMovie(id);
+
+            var repo = new MovieGalleryRepository();
+            var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
+            detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
 
             return View(detailsAboutMovie);
         }

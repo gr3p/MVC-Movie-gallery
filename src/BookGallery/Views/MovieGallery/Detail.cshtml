@@ -4,34 +4,45 @@
 @{
     ViewBag.ShowBackBar = true;
 }
-  
+
 
 <h2>@Model.title</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="well">
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
 
-                <h5><label>Release date:&nbsp;</label>@(Model.release_date)</h5>
-                <h5><label>Genre:&nbsp;</label>@String.Join(", ", Model.genres.MapGengresToString(new MovieGalleryRepository()))</h5>
-                <h5><label>Language:&nbsp;</label> @Model.original_language</h5>
-                <h5><a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">IMDB</a></h5>
-                <h5>Languages:</h5>
-                <div>
-                    <ul>
-                        @foreach (var spokenLanguage in Model.spoken_languages)
+            <h5><label>Release date:&nbsp;</label>@(Model.release_date)</h5>
+            <h5><label>Genre:&nbsp;</label>@String.Join(", ", Model.genres.MapGengresToString(new MovieGalleryRepository()))</h5>
+            <h5><label>Language:&nbsp;</label> @Model.original_language</h5>
+            <h5><label>Goto IMDB:&nbsp;</label><a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">IMDB</a></h5>
+            <h5><label>Status:&nbsp;</label>@Html.Raw(Model.status)</h5>
+            <h5>Languages:</h5>
+            <div>
+                <ul>
+                    @foreach (var spokenLanguage in Model.spoken_languages)
             {
                 <li>@spokenLanguage.name</li>
-}
-                    </ul>
-                </div>
+    }
+                </ul>
             </div>
-            <h4>Description:</h4>
-            <div>@Html.Raw(Model.overview)</div>
         </div>
-        <div class="col-md-6">
-            <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
-                 alt="@Model.title" class="img-responsive"/>
-        </div>
+       
+        <h4>Description:</h4>
+        <div>@Html.Raw(Model.overview)</div>
+    </div>
+    <div class="col-md-6">
+        <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
+             alt="@Model.title" class="img-responsive" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <br />
+        <h4>Trailer:</h4>
+        <br/>
+        <iframe width="770" height="500" src="https://www.youtube.com/embed/@(Model.Trailers.results.FirstOrDefault()?.key)"></iframe>
+
+
     </div>
 
-
+</div>

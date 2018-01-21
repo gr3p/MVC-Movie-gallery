@@ -42,5 +42,10 @@ namespace MovieGallery.Data
         {
             return API.MovieHttpClient.GetMoviesComingSoon();
         }
+
+        public MovieTrailers GetMovieTrailers(int movieId)
+        {
+            return API.MovieHttpClient.GetMovieTrailers(movieId);
+        }
     }
 }

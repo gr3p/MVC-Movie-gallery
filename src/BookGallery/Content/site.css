@@ -21,14 +21,16 @@ textarea {
     height: 35px;
     border-radius: 2px;
 }
+.container {
+    margin-bottom: 5px;
+}
 
 /* Backbar Styles */
 .backbar{
-  width: 100%;
-  background-color: #555;
-  margin-top: -10px;
-  height: 55px;
-  padding-top: 5px;
+    width: 100%;
+    background-color: #555;
+    margin-top: -5px;
+    height: 100%;
 }
   .backbar .btn{
     margin-top: 4px;

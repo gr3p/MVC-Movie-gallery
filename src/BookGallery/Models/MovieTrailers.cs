@@ -10,8 +10,8 @@ namespace MovieGallery.Models
     public class MovieTrailers
     {
         public int id { get; set; }
-        [JsonProperty(PropertyName = "Trailers")]
-        public List<Trailer> results { get; set; }
+ 
+        public Trailer[] results { get; set; }
     }
 
     public class Trailer
@@ -27,3 +27,4 @@ namespace MovieGallery.Models
     }
 
 }
+
