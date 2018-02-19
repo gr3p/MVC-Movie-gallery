@@ -9,18 +9,21 @@
 }
 <h2>New Released Movies</h2>
 <div class="row">
-    @foreach (var movie in Model.MovieItems)
-    {
-        <div class="col-md-3">
-            <a href=@Url.Action("Detail", new {id = movie.id})>
-                <h4>@movie.title</h4>
-            </a>
-                <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</h5>
-                <h5><label>Genre:&nbsp;</label>@String.Join(", ", movie.GenreStrings.Take(2))</h5>
-            <a href=@Url.Action("Detail", new {id = movie.id})>  <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
-                     alt="@movie.title" class="poster img-responsive" /></a>
-            
-        </div>
-    }
-
+    <div class="list">
+        @foreach (var movie in Model.MovieItems)
+        {
+            <div class="list-item">
+                <div class="list-content">
+                    <a href=@Url.Action("Detail", new {id = movie.id})>
+                        <h4>@movie.title</h4>
+                    </a>
+                    <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</h5>
+                    <h5><label>Genre:&nbsp;</label>@String.Join(", ", movie.GenreStrings.Take(2))</h5>
+                    <a href=@Url.Action("Detail", new {id = movie.id})>
+                        <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
+                             alt="@movie.title" class="poster img-responsive"/></a>
+                </div>
+            </div>
+        }
+    </div>
 </div>
