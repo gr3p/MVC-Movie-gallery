@@ -8,8 +8,8 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
-img{
-    padding: 0px 10px 20px 0px;
+img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .btn-submit{width: 91px;height: 37px;border-radius: 0px;}
 /* Set width on the form input elements since they're 100% wide by default */
@@ -55,9 +55,7 @@ textarea {
     /* padding-bottom: 40px; */
 }
 
-.poster {
-    padding-top: 10px;
-}
+
 
 #custom-search-input {
     margin:0;
@@ -136,7 +134,6 @@ i.fa-star {
 .list-content {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     padding: 1em;
     width: 100%;
 }
