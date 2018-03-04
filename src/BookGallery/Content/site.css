@@ -31,6 +31,8 @@ textarea {
     background-color: #555;
     margin-top: -5px;
     height: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
   .backbar .btn{
     margin-top: 4px;

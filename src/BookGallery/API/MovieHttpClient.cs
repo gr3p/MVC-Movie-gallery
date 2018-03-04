@@ -23,6 +23,7 @@ namespace MovieGallery.API
         /// </summary>
         /// <param name="searchFor"></param>
         /// <returns></returns>
+        /// https://api.themoviedb.org/3/search/movie?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query=coco&page=1&include_adult=false
         public static MovieSearchItems GetMovieResults(string searchFor)
         {
             MovieSearchItems results;
@@ -115,20 +116,25 @@ namespace MovieGallery.API
         {
             MovieSearchItems results;
             using (WebClient webc = new WebClient())
-            {   string date = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd"); ;
+            {   
+                string date = DateTime.Today.AddMonths(-2).ToString("yyyy-MM-dd"); ;
                 var url = $"https://api.themoviedb.org/3/discover/movie?" +
                           $"sort_by=popularity.desc" +
                           $"&api_key={ApiKey}" +
-                          $"&primary_release_date.gte={date}" +
-                          $"&primary_release_date.lte={DateTime.Today:yyyy-MM-dd}";
+                          $"&release_date.gte={date}" +
+                          $"&release_date.lte={DateTime.Today:yyyy-MM-dd}" +
+                          $"&with_release_type=5";
+                          
                            
                 var searchResult = webc.DownloadData(url);
+                webc.Dispose();
                 var serializ = new JsonSerializer();
                 using (var stream = new MemoryStream(searchResult))
                 using (var reader = new StreamReader(stream))
 
                 using (var jsonreader = new JsonTextReader(reader))
                 {
+                    
                     results = serializ.Deserialize<MovieSearchItems>(jsonreader);
                 }
             };
@@ -141,12 +147,15 @@ namespace MovieGallery.API
             MovieSearchItems results;
             using (WebClient webc = new WebClient())
             {
+                string tommorow = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd"); ;
                 var url = $"https://api.themoviedb.org/3/discover/movie?" +
                           $"sort_by=popularity.desc" +
                           $"&api_key={ApiKey}" +
-                          $"&primary_release_date.gte={DateTime.Today:yyyy-MM-dd}";
+                          $"&release_date.gte={tommorow}" +
+                          $"&with_release_type=5";
 
                 var searchResult = webc.DownloadData(url);
+                webc.Dispose();
                 var serializ = new JsonSerializer();
                 using (var stream = new MemoryStream(searchResult))
                 using (var reader = new StreamReader(stream))
@@ -168,6 +177,7 @@ namespace MovieGallery.API
                 var url = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US";
 
                 var searchResult = webc.DownloadData(url);
+                webc.Dispose();
                 var serializ = new JsonSerializer();
                 using (var stream = new MemoryStream(searchResult))
                 using (var reader = new StreamReader(stream))
@@ -181,9 +191,14 @@ namespace MovieGallery.API
             return results;
 
         }
+        ///DVD : release_dates
         //157336 Interstellar
+        //354912 COCO new.
         //http://api.themoviedb.org/3/movie/157336/videos?api_key=76b3c69a02263d0d7ff63b212d1e2c40
         //https://www.youtube.com/watch?v=ePbKGoIGAXY
         //https://www.themoviedb.org/talk/5451ec02c3a3680245005e3c
+
+        //Release Date for coco to dvd?
+        //http://api.themoviedb.org/3/movie/354912/release_dates?api_key=76b3c69a02263d0d7ff63b212d1e2c40
     }
 }

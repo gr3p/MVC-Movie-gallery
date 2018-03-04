@@ -25,29 +25,30 @@ namespace MovieGallery.Controllers
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
 
-            return View(detailsAboutMovie);
+            return View("~/views/moviegallery/detail.cshtml",detailsAboutMovie);
         }
         
         public ActionResult Index()
         {
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.GetRecentReleasedMovies();
+
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
-            return View(viewModel);
+            return View("~/Views/MovieGallery/Index.cshtml",viewModel);
         }
         public ActionResult ComingSoon()
         {
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.MoviesComingSoon();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
-            return View("Index",viewModel);
+            return View("~/Views/MovieGallery/Index.cshtml",viewModel);
         }
 
 
 
         public ActionResult LookUpMovie()
         {
-            return View();
+            return View("~/Views/MovieGallery/LookUpMovie.cshtml");
         }
 
 
@@ -55,12 +56,9 @@ namespace MovieGallery.Controllers
         {
             using (var context = new Context.Context())
             {
-
-
                 var comicBooks = context.movieSearchItems.ToList();
 
-
-                return View(comicBooks);
+                return View("~/Views/MovieGallery/LookUpLocalMovies.cshtml", comicBooks);
             }
         }
 
@@ -71,7 +69,8 @@ namespace MovieGallery.Controllers
             var movieRepository = new MovieGalleryRepository();
             var movieItem = movieRepository.SearchForAMovie(movieToFind);
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(movieRepository, movieItem.MovieItems, movieItem.page, movieItem.total_pages, movieItem.total_results);
-            return View(viewModel);
+           
+            return View("~/Views/MovieGallery/LookUpMovie.cshtml", viewModel);
         }
     }
 }

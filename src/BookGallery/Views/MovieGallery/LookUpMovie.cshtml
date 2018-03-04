@@ -5,40 +5,40 @@
 @{
     ViewBag.Title = "LookUpMovie";
     ViewBag.ShowBackBar = true;
-    
+
 
 }
 
-        <h2>Search For Movie</h2>
-    <div class="row">
-        <div class="col-md-12">
-            @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
-            {
-                <div class="well">
-                    <h4>Search:</h4>
-                    <input type="text" id="movieToFind" name="movieToFind"/>
-                    <input class="btn-submit" type="submit" id="submitId" value="Submit" />
-                    @if(ViewBag.SearchKey != null)
-                    {
-                        <span>
-                            Search Key: @ViewBag.SearchKey +"..."
-                        </span>
-                    }
-                </div>
-            }
-            @if (Model != null)
-            {
-            
-                <h2>@(Model.MovieItems?.Length.ToString() ?? "0") hits </h2>
-
-                if (Model.MovieItems != null)
+<h2>Search For Movie</h2>
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
+        {
+            <div class="well">
+                <h4>Search:</h4>
+                <input type="text" id="movieToFind" name="movieToFind" autofocus />
+                <input class="btn-submit" type="submit" id="submitId" value="Submit" />
+                @if (ViewBag.SearchKey != null)
                 {
-                    foreach (var movie in Model.MovieItems)
-                    {
+                    <span>
+                        Search Key: @ViewBag.SearchKey +"..."
+                    </span>
+                }
+            </div>
+        }
+        @if (Model != null)
+        {
+
+            <h2>@(Model.MovieItems.Count().ToString() ?? "0") hits </h2>
+
+            if (Model.MovieItems != null)
+            {
+                foreach (var movie in Model.MovieItems)
+                { <a href=@Url.Action("Detail", new {id = movie.id})>
                         <div class="row row-space">
                             <div class="col-md-3">
                                 <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
-                                     alt="@movie.title" class="poster img-responsive"/>
+                                     alt="@movie.title" class="poster img-responsive" />
                             </div>
                             <div class="col-md-9">
                                 <div class="well">
@@ -56,10 +56,11 @@
                             </div>
 
                         </div>
-                    }
+                    </a>
                 }
             }
+        }
 
-        </div>
     </div>
+</div>
 

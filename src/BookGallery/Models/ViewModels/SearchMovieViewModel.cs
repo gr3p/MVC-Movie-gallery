@@ -10,15 +10,15 @@ namespace MovieGallery.Models.ViewModels
     public class SearchMovieViewModel<T> : IMovieSearchItems
     {
         public API.Genre[] gengres { get; }
-        public MovieItem[] MovieItems { get; set; }
+        public List<MovieItem> MovieItems { get; set; }
         public int page { get; set; }
         public int total_pages { get; set; }
         public int total_results { get; set; }
        
-        public SearchMovieViewModel(MovieGalleryRepository movieRepository, MovieItem[] movieItems, int page, int total_pages, int total_results)
+        public SearchMovieViewModel(MovieGalleryRepository movieRepository, List<MovieItem> movieItems, int page, int total_pages, int total_results)
         {
             gengres = movieRepository.MovieGenre.Genres;
-            MovieItems = movieItems;
+            MovieItems = new List<MovieItem>(movieItems.ToList().OrderByDescending(d => d.release_date));
             this.page = page;
             this.total_pages = total_pages;
             this.total_results = total_results;
