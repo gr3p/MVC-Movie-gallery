@@ -65,6 +65,10 @@ namespace MovieGallery.Controllers
         [HttpPost]
         public ActionResult LookUpMovie(string movieToFind)
         {
+            if (string.IsNullOrEmpty(movieToFind))
+            {
+                return Redirect("Index");
+            }
             ViewBag.SearchingFor = movieToFind;
             var movieRepository = new MovieGalleryRepository();
             var movieItem = movieRepository.SearchForAMovie(movieToFind);

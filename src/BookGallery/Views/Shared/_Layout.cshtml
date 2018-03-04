@@ -22,7 +22,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <!-- Add menu items here -->
+                @Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new {@class = "btn btn-default"})
+                @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new {@class = "btn btn-default"})
             </ul>
         </div>
     </div>
@@ -41,10 +42,34 @@
 {
     <div class="backbar">
         <div class="container">
-            @Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new { @class = "btn btn-default" })
-            @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new { @class = "btn btn-default" })
-            @*@Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })*@
-
+        
+            <div class="row">
+            <div class="col-md-12">
+                @*@Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new {@class = "btn btn-default"})
+                @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new {@class = "btn btn-default"})*@
+                @*@Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })*@
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-wrapper">
+                        @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
+                        {
+                            <div class="search-wrapper search-center">
+                                <h3 class="search__label">Search&nbsp;</h3>
+                                <input type="text" id="movieToFind" name="movieToFind" autofocus/>
+                                <input class="btn-submit" type="submit" id="submitId" value="Submit"/>
+                                @if (ViewBag.SearchKey != null)
+                                {
+                                    <span>
+                                        Search Key: @ViewBag.SearchKey +"..."
+                                    </span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 }
