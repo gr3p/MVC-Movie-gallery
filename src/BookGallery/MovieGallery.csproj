@@ -129,7 +129,6 @@
     <Compile Include="Context\Context.cs" />
     <Compile Include="Context\DatabaseInitializer.cs" />
     <Compile Include="Controllers\MovieGalleryController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\LocalMovies.cs" />
     <Compile Include="Data\MovieGalleryRepository.cs" />
     <Compile Include="Global.asax.cs">
