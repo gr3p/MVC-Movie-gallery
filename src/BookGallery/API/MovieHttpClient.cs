@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
@@ -72,22 +74,31 @@ namespace MovieGallery.API
 
         public static MovieGenres GetMovieGenres()
         {
-            MovieGenres genres;
-            using (WebClient webc = new WebClient())
+            try
             {
-                var url = $"http://api.themoviedb.org/3/genre/movie/list?api_key={ApiKey}";
-
-                var searchResult = webc.DownloadData(url);
-                var serializ = new JsonSerializer();
-                using (var stream = new MemoryStream(searchResult))
-                using (var reader = new StreamReader(stream))
-
-                using (var jsonreader = new JsonTextReader(reader))
+                MovieGenres genres;
+                using (WebClient webc = new WebClient())
                 {
-                    genres = serializ.Deserialize<MovieGenres>(jsonreader);
-                }
-            };
-            return genres;
+                    var url = $"http://api.themoviedb.org/3/genre/movie/list?api_key={ApiKey}";
+
+                    var searchResult = webc.DownloadData(url);
+                    var serializ = new JsonSerializer();
+                    using (var stream = new MemoryStream(searchResult))
+                    using (var reader = new StreamReader(stream))
+
+                    using (var jsonreader = new JsonTextReader(reader))
+                    {
+                        genres = serializ.Deserialize<MovieGenres>(jsonreader);
+                    }
+                };
+                return genres;
+            }
+            catch (Exception e)
+            {
+               //Implement logging
+                throw;
+            }
+            
 
         }
 

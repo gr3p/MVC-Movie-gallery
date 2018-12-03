@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using MovieGallery.Models;
 using MovieGallery.Models.API;
@@ -14,6 +17,9 @@ namespace MovieGallery.Data
 
         public MovieGalleryRepository()
         {
+            ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object sender, X509Certificate certificate, X509Chain chain,
+                    SslPolicyErrors sslPolicyErrors) { return true; };
 
             MovieGenre = API.MovieHttpClient.GetMovieGenres();
         }
