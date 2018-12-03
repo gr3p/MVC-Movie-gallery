@@ -116,6 +116,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\internetmoviegallery - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -129,7 +130,6 @@
     <Compile Include="Context\Context.cs" />
     <Compile Include="Context\DatabaseInitializer.cs" />
     <Compile Include="Controllers\MovieGalleryController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\LocalMovies.cs" />
     <Compile Include="Data\MovieGalleryRepository.cs" />
     <Compile Include="Global.asax.cs">

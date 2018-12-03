@@ -3,44 +3,57 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Amazing Movie Gallery</title>
+    <title>Slimy IMDb</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
     <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script type="text/javascript">
-        var appInsights=window.appInsights||function(a){
-            function b(a){c[a]=function(){var b=arguments;c.queue.push(function(){c[a].apply(c,b)})}}var c={config:a},d=document,e=window;setTimeout(function(){var b=d.createElement("script");b.src=a.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js",d.getElementsByTagName("script")[0].parentNode.appendChild(b)});try{c.cookie=d.cookie}catch(a){}c.queue=[];for(var f=["Event","Exception","Metric","PageView","Trace","Dependency"];f.length;)b("track"+f.pop());if(b("setAuthenticatedUserContext"),b("clearAuthenticatedUserContext"),b("startTrackEvent"),b("stopTrackEvent"),b("startTrackPage"),b("stopTrackPage"),b("flush"),!a.disableExceptionTracking){f="onerror",b("_"+f);var g=e[f];e[f]=function(a,b,d,e,h){var i=g&&g(a,b,d,e,h);return!0!==i&&c["_"+f](a,b,d,e,h),i}}return c
+        var appInsights = window.appInsights || function (a) {
+            function b(a) { c[a] = function () { var b = arguments; c.queue.push(function () { c[a].apply(c, b) }) } } var c = { config: a }, d = document, e = window; setTimeout(function () { var b = d.createElement("script"); b.src = a.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js", d.getElementsByTagName("script")[0].parentNode.appendChild(b) }); try { c.cookie = d.cookie } catch (a) { } c.queue = []; for (var f = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; f.length;)b("track" + f.pop()); if (b("setAuthenticatedUserContext"), b("clearAuthenticatedUserContext"), b("startTrackEvent"), b("stopTrackEvent"), b("startTrackPage"), b("stopTrackPage"), b("flush"), !a.disableExceptionTracking) { f = "onerror", b("_" + f); var g = e[f]; e[f] = function (a, b, d, e, h) { var i = g && g(a, b, d, e, h); return !0 !== i && c["_" + f](a, b, d, e, h), i } } return c
         }({
-            instrumentationKey:"93e0b4a7-ced6-4110-b8e8-1f56a6f4d2a4"
+            instrumentationKey: "93e0b4a7-ced6-4110-b8e8-1f56a6f4d2a4"
         });
-    
-        window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&appInsights.trackPageView();
+
+        window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length && appInsights.trackPageView();
     </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Movie Gallery", "Index", "MovieGallery", new { area = "" }, new { @class = "navbar-brand" })
+                </button>*@
+                <a href="@Url.Action("Index","MovieGallery")" class="navbar-brand"><span class="site-green  slimy-logo"> Slimy</span>&nbsp;<span class="imdb site-fat">IMDb</span></a>
+                @*@Html.ActionLink("IMDB - Slim", "Index", "MovieGallery", new { area = "" }, new { @class = "navbar-brand" })*@
+                <div class="search-wrapper">
+                    @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
+                    {
+                        <div class="search-wrapper search-center">
+                            @*<h3 class="search__label">Search&nbsp;</h3>*@
+                            <input class="glowing-border" type="text" id="movieToFind" name="movieToFind" autofocus placeholder="Find Movies and Dvds..." />
+                            <input class="btn-submit slimy-button " type="submit" id="submitId" value="Submit" />
+                            <ul class="nav navbar-nav">
+                                @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new { @class = "btn btn-default" })
+                                @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = "btn btn-default" })
+                            </ul>
+                        </div>
+                    }
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new { @class = "btn btn-default" })
-                </ul>
-            </div>
+            @*<div class="navbar-collapse collapse">
+                
+            </div>*@
         </div>
 
 
-        @if (ViewBag.ShowBackBar != null && ViewBag.ShowBackBar)
+        @*@if (ViewBag.ShowBackBar != null && ViewBag.ShowBackBar)
         {
-            <div class="backbar">
+            @*<div class="backbar">
                 <div class="container">
                     @Html.ActionLink("Return To Overview", "Index", "MovieGallery", null, new { @class = "btn btn-default" })
 
@@ -48,41 +61,22 @@
             </div>
         }
 
-        @if (ViewBag.SearchMovie != null && ViewBag.SearchMovie)
+        if (ViewBag.SearchMovie != null && ViewBag.SearchMovie)
         {
             <div class="backbar">
                 <div class="container">
 
                     <div class="row">
                         <div class="col-md-12">
-                            @*@Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new {@class = "btn btn-default"})
-                                @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new {@class = "btn btn-default"})*@
-                            @*@Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })*@
+                            @Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new {@class = "btn btn-default"})
+                                @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new {@class = "btn btn-default"})
+                            @Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="search-wrapper">
-                                @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
-                                {
-                                    <div class="search-wrapper search-center">
-                                        <h3 class="search__label">Search&nbsp;</h3>
-                                        <input type="text" id="movieToFind" name="movieToFind" autofocus />
-                                        <input class="btn-submit" type="submit" id="submitId" value="Submit" />
-                                        @if (ViewBag.SearchKey != null)
-                                        {
-                                            <span>
-                                                Search Key: @ViewBag.SearchKey +"..."
-                                            </span>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
-        }
+        }*@
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -93,6 +87,7 @@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

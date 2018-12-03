@@ -30,6 +30,7 @@ namespace MovieGallery.Controllers
         
         public ActionResult Index()
         {
+            ViewBag.viewheadline = "DVD/Blu-ray News";
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.GetRecentReleasedMovies();
 
@@ -38,6 +39,7 @@ namespace MovieGallery.Controllers
         }
         public ActionResult ComingSoon()
         {
+            ViewBag.viewheadline = "Coming Soon on DVD/Blu-ray";
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.MoviesComingSoon();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
