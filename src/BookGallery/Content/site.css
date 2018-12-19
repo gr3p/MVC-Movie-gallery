@@ -1,6 +1,7 @@
 body {
-    padding-top: 70px;
+    /* padding-top: 70px; */
     padding-bottom: 20px;
+    /* -webkit-text-size-adjust: none!important; */
 }
 
 /* Site Colors */
@@ -11,15 +12,20 @@ body {
 }
 .slimy-logo {
     font-family: 'Creepster', cursive;
-    font-size: 4rem;
+    background-color: white;
+    /* height: 75px; */
+    font-size: 56px;
+    /* height: 2px; */
+    line-height: 40px;
+    width: 300px;
 }
 
-.slimy-button {background-image: linear-gradient(chartreuse, lightgreen 6%, chartreuse);   color: black;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;border-radius: 2px;cursor: pointer;width: 91px;height: 37px;border-color: #474949;border: 1px;
-}
+.slimy-button {background-image: linear-gradient(chartreuse, lightgreen 6%, chartreuse);color: black;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;border-radius: 2px;cursor: pointer;width: 91px;float: left;height: 39px;border-color: #474949;border: 1px;}
 
 .glowing-border {
     border: 2px solid chartreuse;
     border-radius: 7px;
+    float: left;
 }
 
     .glowing-border:focus {
@@ -35,12 +41,17 @@ body {
 }
 .imdb {
     background-color: #E8B708;
-    padding: 5px 4px;
+    padding: 0px 5px;
     border-radius: 5px;
     color: black;
     font-family: arial;
-    font-weight: 900;
+    /* font-weight: 900; */
+    /* float: left; */
+    /* display: block; */
+    /* height: 40px; */
 }
+
+.imdb.site-fat {}
 .navbar-header {
     margin-top: 10px;
 }
@@ -58,12 +69,13 @@ input,
 select,
 textarea {
     max-width: 309px;
-    width: 300px;
+    width: 250px;
     height: 35px;
     border-radius: 2px;
 }
 .container {
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 /* Backbar Styles */
@@ -79,6 +91,8 @@ textarea {
   .backbar .btn{
     margin-top: 4px;
   }
+
+
 
 /* Series List Styles */
 .series-list{
@@ -98,17 +112,38 @@ textarea {
 .well {
     /* padding-bottom: 40px; */
 }
-
-
-.search-wrapper {
+.btn-menu {
+    margin-right: 5px;
     margin-top: 5px;
 }
-.search-wrapper, search-center {
+.search-input {
+    margin-top: 5px;
+}
+.logo-wrapper {
+    /* margin-bottom: 10px; */
+    /* margin-right: 5px; */
+    /* min-width: 160px; */
+    margin-right: 5px;
+    height: 44px;
+    width: 164px;
+}
+.flex-container {
+    margin-top: 5px;
     color: black;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction:row;
+    /* justify-content: left; */
+    /* float: left; */
+    /* clear: both; */
 }
+
+.flex-item {
+    /* border:2px red solid; */
+    /* flex-grow:0; */
+    /* width: 45%; */
+    justify-content: left;
+}
+
  
 .search__label{color: white;margin-top: 0px;padding-top: 5px;}
 
@@ -160,7 +195,7 @@ textarea {
 }
 input[type=text] {
     border-radius: 1px;
-    height: 37px;
+    height: 38px;
     font-size: 14px;
     box-shadow: none;
     line-height: 100%;
@@ -169,6 +204,8 @@ input[type=text] {
     margin-right: 5px;
     border: 0;
 }
+
+input#movieToFind {}
 .row-space{margin-top: 30px;}
 
 i.fa-star {
@@ -205,4 +242,12 @@ i.fa-star {
 }
 .list-content p {
     flex: 1 0 auto;
+}
+@media all and (max-width: 736px) {
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 480px) {
 }
