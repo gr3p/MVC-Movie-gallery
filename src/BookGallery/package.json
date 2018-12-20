@@ -1,0 +1,28 @@
+{
+  "name": "moviegallery",
+  "version": "1.0.0",
+  "description": "Slimy Movie Gallery",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr3p/book-gallery.git"
+  },
+  "keywords": [
+    "movie",
+    "gallery"
+  ],
+  "author": "Marcus Wallén",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gr3p/book-gallery/issues"
+  },
+  "homepage": "https://github.com/gr3p/book-gallery#readme",
+  "devDependencies": {
+    "browsify": "0.0.4",
+    "fitvids": "^2.0.0",
+    "uniq": "^1.0.1"
+  }
+}

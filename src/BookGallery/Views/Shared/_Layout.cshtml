@@ -22,24 +22,15 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-
-            @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>*@
-
             @*@Html.ActionLink("IMDB - Slim", "Index", "MovieGallery", new { area = "" }, new { @class = "navbar-brand" })*@
-           
+
             <div class="logo-wrapper">
                 <a href="@Url.Action("Index", "MovieGallery")" class="navbar-brand ">
                     <div class="logo-container"> <div class="site-green  slimy-logo"> Slimy Movies</div></div>
                 </a>
             </div>
-            
-            <div class="flex-container">
 
-              
+            <div class="flex-container">
 
                 @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
                 {
@@ -49,53 +40,27 @@
                     @Html.ActionLink("Coming Soon", "ComingSoon", "MovieGallery", null, new { @class = "btn btn-default btn-menu flex-item" })
                     @Html.ActionLink("New DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = "btn btn-default btn-menu flex-item" })
 
-
                 }
 
             </div>
-            @*<div class="navbar-collapse collapse">
-
-                </div>*@
+           
         </div>
 
-
-        @*@if (ViewBag.ShowBackBar != null && ViewBag.ShowBackBar)
-            {
-                @*<div class="backbar">
-                    <div class="container">
-                        @Html.ActionLink("Return To Overview", "Index", "MovieGallery", null, new { @class = "btn btn-default" })
-
-                    </div>
-                </div>
-            }
-
-            if (ViewBag.SearchMovie != null && ViewBag.SearchMovie)
-            {
-                <div class="backbar">
-                    <div class="container">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                @Html.ActionLink("Find Movie", "LookUpMovie", "MovieGallery", null, new {@class = "btn btn-default"})
-                                    @Html.ActionLink("Movies Coming Soon", "ComingSoon", "MovieGallery", null, new {@class = "btn btn-default"})
-                                @Html.ActionLink("Local Movies", "LookUpLocalMovies", "MovieGallery", null, new { @class = "btn btn-default" })
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            }*@
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Movie Gallery</p>
+            <p>&copy; @DateTime.Now.Year - Slimy Movies</p>
         </footer>
     </div>
+  
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js" async></script>
+    <script src="~/Scripts/jquery.fitvids.js"></script>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+       
+    </script>
 </body>
 </html>

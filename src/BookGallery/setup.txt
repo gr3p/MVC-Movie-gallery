@@ -1,0 +1,3 @@
+Bygg App.js med Browsify.
+
+browserify app.js -o Scripts/bundle.js

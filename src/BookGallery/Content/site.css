@@ -243,6 +243,14 @@ i.fa-star {
 .list-content p {
     flex: 1 0 auto;
 }
+
+.video-content {
+    height: 600px;
+}
+.fitvids {
+    height: 100%;
+    width: 100%;
+}
 @media all and (max-width: 736px) {
     .flex-container {
         flex-direction: column;
@@ -251,3 +259,4 @@ i.fa-star {
 
 @media all and (max-width: 480px) {
 }
+
