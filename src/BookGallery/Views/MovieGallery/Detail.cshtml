@@ -8,7 +8,13 @@
 
 <h2>@Model.title</h2>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3 no-padding--right">
+        <div class="image-poster-container">
+            <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
+                 alt="@Model.title" class="img-responsive"/>
+        </div>
+    </div>
+    <div class="col-md-9">
         <div class="well">
 
             <h5><label>Theature date:&nbsp;</label>@(Model.release_date)</h5>
@@ -30,10 +36,7 @@
         <h4>Description:</h4>
         <div>@Html.Raw(Model.overview)</div>
     </div>
-    <div class="col-md-6">
-        <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
-             alt="@Model.title" class="img-responsive" />
-    </div>
+
 </div>
 
 <div class="col-md-12">

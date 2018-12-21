@@ -3,7 +3,20 @@ body {
     padding-bottom: 20px;
     /* -webkit-text-size-adjust: none!important; */
 }
+.no-padding{ padding: 0px;}
 
+.no-padding--left {
+    padding-left: 0px;
+}
+.no-padding--right {
+    padding-right: 0px;
+}
+.no-padding--top {
+    padding-top: 0px;
+}
+.no-padding--bottom {
+    padding-bottom: 0px;
+}
 /* Site Colors */
 .site-green {
     background: -webkit-linear-gradient(chartreuse, lightgreen 6%, chartreuse);
@@ -250,6 +263,9 @@ i.fa-star {
 .fitvids {
     height: 100%;
     width: 100%;
+}
+.image-poster-container {
+    margin-bottom: 10px;
 }
 @media all and (max-width: 736px) {
     .flex-container {
