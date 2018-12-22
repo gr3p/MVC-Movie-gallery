@@ -35,7 +35,7 @@
                 @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
                 {
                     <input class="glowing-border search-input flex-item" type="text" id="movieToFind" name="movieToFind" autofocus placeholder="Find Movies and Dvds..." />
-                    <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Submit" />
+                    <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
 
                     @Html.ActionLink("Coming Soon", "ComingSoon", "MovieGallery", null, new { @class = "btn btn-default btn-menu flex-item" })
                     @Html.ActionLink("New DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = "btn btn-default btn-menu flex-item" })
