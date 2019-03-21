@@ -11,19 +11,20 @@
     <div class="col-md-3 no-padding--right">
         <div class="image-poster-container">
             <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
-                 alt="@Model.title" class="img-responsive"/>
+                 alt="@Model.title" class="img-responsive" />
         </div>
     </div>
     <div class="col-md-9">
         <div class="well">
 
             <h5><label>Theature date:&nbsp;</label>@(Model.release_date)</h5>
+            <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@Model.vote_average <a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">(IMDB)</a></h5>
             <h5><label>Genre:&nbsp;</label>@String.Join(", ", Model.genres.MapGengresToString(new MovieGalleryRepository()))</h5>
             <h5><label>Language:&nbsp;</label> @Model.original_language</h5>
-            <h5><label>Goto IMDB:&nbsp;</label><a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">IMDB</a></h5>
             <h5><label>Status:&nbsp;</label>@Html.Raw(Model.status)</h5>
             <h5>Languages:</h5>
             <div>
+                @*@Model.popularity*@
                 <ul>
                     @foreach (var spokenLanguage in Model.spoken_languages)
                     {
@@ -31,7 +32,24 @@
                     }
                 </ul>
             </div>
+            <h5><label>Main Cast:</label></h5>
+            <div class="clearfix">
+
+                @foreach (var item in Model.Credits.cast.Take(3))
+                {
+                    <div class="img-container">
+                        <img style="width: 50%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
+                        <p>@item.name</p>
+                        <p style="color: #00cc00; font-weight: bold;">As @item.character</p>
+                    </div>
+
+                }
+
+            </div>
+
+
         </div>
+
 
         <h4>Description:</h4>
         <div>@Html.Raw(Model.overview)</div>

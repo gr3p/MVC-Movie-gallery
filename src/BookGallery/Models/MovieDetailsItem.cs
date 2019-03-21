@@ -3,6 +3,12 @@
 
     public class MovieDetailsItem
     {
+        public CreditsModel Credits;
+        public MovieDetailsItem()
+        {
+            Credits = new CreditsModel();    
+        }
+
         public bool adult { get; set; }
         public string backdrop_path { get; set; }
         public object belongs_to_collection { get; set; }
@@ -55,5 +61,7 @@
         public string iso_639_1 { get; set; }
         public string name { get; set; }
     }
+
+
 
 }

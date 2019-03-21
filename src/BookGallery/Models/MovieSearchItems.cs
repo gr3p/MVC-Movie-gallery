@@ -9,7 +9,7 @@ namespace MovieGallery.Models
 
     public class MovieSearchItems : IMovieSearchItems
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int page { get; set; }
         public int total_results { get; set; }
         public int total_pages { get; set; }
@@ -20,7 +20,7 @@ namespace MovieGallery.Models
     public class MovieItem
     {
         public int vote_count { get; set; }
-        public int id { get; set; }
+        public int? id { get; set; }
         public bool video { get; set; }
         public float vote_average { get; set; }
         public string title { get; set; }

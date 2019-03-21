@@ -276,3 +276,20 @@ i.fa-star {
 @media all and (max-width: 480px) {
 }
 
+.img-container {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+a {
+    color: #00cc00;
+    text-decoration: none;
+}

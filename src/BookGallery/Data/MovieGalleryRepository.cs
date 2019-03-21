@@ -53,5 +53,10 @@ namespace MovieGallery.Data
         {
             return API.MovieHttpClient.GetMovieTrailers(movieId);
         }
+
+        public CreditsModel GetMovieCredits(int movieId)
+        {
+            return API.MovieHttpClient.GetCreditsForMovie(movieId);
+        }
     }
 }

@@ -28,98 +28,32 @@ namespace MovieGallery.API
         /// https://api.themoviedb.org/3/search/movie?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query=coco&page=1&include_adult=false
         public static MovieSearchItems GetMovieResults(string searchFor)
         {
-            MovieSearchItems results;
             using (WebClient webc = new WebClient())
             {
                 var url =
                     $"https://api.themoviedb.org/3/search/movie?api_key={ApiKey}&language=en-US&query={searchFor}&page=1&include_adult=false";
 
-                var searchResult = webc.DownloadData(url);
-                var serializ = new JsonSerializer();
-                using (var stream = new MemoryStream(searchResult))
-                using (var reader = new StreamReader(stream))
-
-                using (var jsonreader = new JsonTextReader(reader))
-                {
-                    results = serializ.Deserialize<MovieSearchItems>(jsonreader);
-                }
-            };
-
-            return results;
-
+                return DownloadDataFromApi<MovieSearchItems>(url);
+            }
         }
 
         public static MovieDetailsItem GetDetailedMovieResults(int movieId)
         {
-            MovieDetailsItem results;
-            using (WebClient webc = new WebClient())
-            {
-
-                var url = $"https://api.themoviedb.org/3/movie/{movieId}?api_key={ApiKey}&language=en-US";
-
-                var searchResult = webc.DownloadData(url);
-                var serializ = new JsonSerializer();
-                using (var stream = new MemoryStream(searchResult))
-                using (var reader = new StreamReader(stream))
-
-                using (var jsonreader = new JsonTextReader(reader))
-                {
-                    results = serializ.Deserialize<MovieDetailsItem>(jsonreader);
-                }
-            };
-            return results;
-
+            var url = $"https://api.themoviedb.org/3/movie/{movieId}?api_key={ApiKey}&language=en-US";
+            return DownloadDataFromApi<MovieDetailsItem>(url);
         }
 
 
         public static MovieGenres GetMovieGenres()
         {
-            try
-            {
-                MovieGenres genres;
-                using (WebClient webc = new WebClient())
-                {
-                    var url = $"http://api.themoviedb.org/3/genre/movie/list?api_key={ApiKey}";
-
-                    var searchResult = webc.DownloadData(url);
-                    var serializ = new JsonSerializer();
-                    using (var stream = new MemoryStream(searchResult))
-                    using (var reader = new StreamReader(stream))
-
-                    using (var jsonreader = new JsonTextReader(reader))
-                    {
-                        genres = serializ.Deserialize<MovieGenres>(jsonreader);
-                    }
-                };
-                return genres;
-            }
-            catch (Exception e)
-            {
-               //Implement logging
-                throw;
-            }
-            
-
+            var url = $"http://api.themoviedb.org/3/genre/movie/list?api_key={ApiKey}";
+            return DownloadDataFromApi<MovieGenres>(url);
         }
 
         public static MovieSearchItems GetPopularMovies()
         {
-            MovieSearchItems results;
-            using (WebClient webc = new WebClient())
-            {
-                var url = $"https://api.themoviedb.org/3/movie/popular?api_key={ApiKey}&language=en-US&page=1";
-
-                var searchResult = webc.DownloadData(url);
-                var serializ = new JsonSerializer();
-                using (var stream = new MemoryStream(searchResult))
-                using (var reader = new StreamReader(stream))
-
-                using (var jsonreader = new JsonTextReader(reader))
-                {
-                    results = serializ.Deserialize<MovieSearchItems>(jsonreader);
-                }
-            };
-            return results;
+            var url = $"https://api.themoviedb.org/3/movie/popular?api_key={ApiKey}&language=en-US&page=1";
+            return DownloadDataFromApi<MovieSearchItems>(url);
 
         }
 
@@ -127,7 +61,7 @@ namespace MovieGallery.API
         {
             MovieSearchItems results;
             using (WebClient webc = new WebClient())
-            {   
+            {
                 string date = DateTime.Today.AddMonths(-2).ToString("yyyy-MM-dd"); ;
                 var url = $"https://api.themoviedb.org/3/discover/movie?" +
                           $"sort_by=popularity.desc" +
@@ -135,8 +69,8 @@ namespace MovieGallery.API
                           $"&release_date.gte={date}" +
                           $"&release_date.lte={DateTime.Today:yyyy-MM-dd}" +
                           $"&with_release_type=5";
-                          
-                           
+
+
                 var searchResult = webc.DownloadData(url);
                 webc.Dispose();
                 var serializ = new JsonSerializer();
@@ -145,7 +79,7 @@ namespace MovieGallery.API
 
                 using (var jsonreader = new JsonTextReader(reader))
                 {
-                    
+
                     results = serializ.Deserialize<MovieSearchItems>(jsonreader);
                 }
             };
@@ -182,26 +116,40 @@ namespace MovieGallery.API
 
         public static MovieTrailers GetMovieTrailers(int movieId)
         {
-            MovieTrailers results;
+            var url = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US";
+            return DownloadDataFromApi<MovieTrailers>(url);
+        }
+
+        public static CreditsModel GetCreditsForMovie(int movieId)
+        {
+            return DownloadDataFromApi<CreditsModel>(
+                 $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key=76b3c69a02263d0d7ff63b212d1e2c40");
+        }
+
+        public static T DownloadDataFromApi<T>(string apiUrl) where T : class
+        {
+            T results;
             using (WebClient webc = new WebClient())
             {
-                var url = $"https://api.themoviedb.org/3/movie/{movieId}/videos?api_key={ApiKey}&language=en-US";
+                var url = $"{apiUrl}";
 
                 var searchResult = webc.DownloadData(url);
                 webc.Dispose();
-                var serializ = new JsonSerializer();
+                var jsonSerializer = new JsonSerializer();
                 using (var stream = new MemoryStream(searchResult))
                 using (var reader = new StreamReader(stream))
 
-                using (var jsonreader = new JsonTextReader(reader))
+                using (var jsonTextReader = new JsonTextReader(reader))
                 {
-                    results = serializ.Deserialize<MovieTrailers>(jsonreader);
+                    results = jsonSerializer.Deserialize<T>(jsonTextReader);
                 }
             }
 
             return results;
 
         }
+
+
         ///DVD : release_dates
         //157336 Interstellar
         //354912 COCO new.

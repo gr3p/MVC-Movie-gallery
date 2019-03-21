@@ -24,7 +24,7 @@ namespace MovieGallery.Controllers
             var repo = new MovieGalleryRepository();
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
-
+            detailsAboutMovie.Credits = repo.GetMovieCredits(id);
             return View("~/views/moviegallery/detail.cshtml",detailsAboutMovie);
         }
         
