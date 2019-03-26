@@ -15,8 +15,10 @@ namespace MovieGallery.Data
     {
         public MovieGenres MovieGenre { get; set; }
 
+        private MovieGalleryRepository Repo { get; set; }
         public MovieGalleryRepository()
         {
+            Repo = this;
             ServicePointManager.ServerCertificateValidationCallback =
                 delegate(object sender, X509Certificate certificate, X509Chain chain,
                     SslPolicyErrors sslPolicyErrors) { return true; };
@@ -33,6 +35,21 @@ namespace MovieGallery.Data
         {
             return API.MovieHttpClient.GetDetailedMovieResults(movieId);
 
+        }
+
+        public Dictionary<int, MovieDetailsItem> GetDetailsAboutMovies(List<MovieItem> movies)
+        {
+            Dictionary<int, MovieDetailsItem> moviesDetailsItems = new Dictionary<int, MovieDetailsItem>();
+
+            foreach (var movie in movies.Take(10))
+            {
+                
+                var detailsForMovie = Repo.GetDetailsAboutMovie(movie.id);
+                detailsForMovie.Credits = Repo.GetMovieCredits(movie.id);
+                if (detailsForMovie.id != null) moviesDetailsItems.Add(detailsForMovie.id.Value, detailsForMovie);
+            }
+
+            return moviesDetailsItems;
         }
 
         public MovieSearchItems GetMostPopularMovies()

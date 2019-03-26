@@ -20,7 +20,7 @@ namespace MovieGallery.Models
     public class MovieItem
     {
         public int vote_count { get; set; }
-        public int? id { get; set; }
+        public int id { get; set; }
         public bool video { get; set; }
         public float vote_average { get; set; }
         public string title { get; set; }

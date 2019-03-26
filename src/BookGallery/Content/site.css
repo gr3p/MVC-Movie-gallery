@@ -64,7 +64,7 @@ body {
     /* height: 40px; */
 }
 
-.imdb.site-fat {}
+
 .navbar-header {
     margin-top: 10px;
 }
@@ -122,9 +122,7 @@ textarea {
 .series-list li:last-child{
   border: none;
 }
-.well {
-    /* padding-bottom: 40px; */
-}
+
 .btn-menu {
     margin-right: 5px;
     margin-top: 5px;
@@ -218,7 +216,7 @@ input[type=text] {
     border: 0;
 }
 
-input#movieToFind {}
+
 .row-space{margin-top: 30px;}
 
 i.fa-star {
@@ -290,6 +288,21 @@ i.fa-star {
 
 
 a {
-    color: #00cc00;
-    text-decoration: none;
+    color: #0a5d00;
+    text-decoration-color: #0a5d00!important;
+}
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
+    color: #089000;
+}
+.detailInfo {
+   
+    line-height: 5px;
+}
+.filler {
+    height: 40px;
+}
+.fa-lg {
+
+    line-height:initial; 
+     vertical-align: initial; 
 }

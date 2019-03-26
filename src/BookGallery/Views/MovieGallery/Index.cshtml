@@ -5,7 +5,6 @@
 @{
     ViewBag.Title = "New Released Movies";
     ViewBag.SearchMovie = true;
-
 }
 <h2>@ViewBag.viewheadline</h2>
 <div class="row">
@@ -13,20 +12,22 @@
     <div class="list">
         @foreach (var movie in Model.MovieItems)
         {
+           
             <div class="list-item">
                 <div class="list-content">
-                    <a href=@Url.Action("Detail", new {id = movie.id})>
-                        <h4>@movie.title</h4>
-                    </a>
-
-                    <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</h5>
-                    <h5><label>Genre:&nbsp;</label>@String.Join(", ", movie.GenreStrings.Take(2))</h5>
-                    <p><label>Theature Date:</label> @movie.release_date</p>
+                   
                     <a href=@Url.Action("Detail", new {id = movie.id})>
                         <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path" alt="@movie.title" class="poster img-responsive" />
                     </a>
+                    <a href=@Url.Action("Detail", new {id = movie.id})>
+                        <h4>@movie.title <span><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@movie.vote_average</span></h4>
+                    </a>
+                    
+                    <h5 class="detailInfo"><label>Genre:&nbsp;</label>@String.Join(", ", movie.GenreStrings.Take(2))</h5>
+                    <p class="detailInfo"><label>Theature Date:</label> @movie.release_date</p>
+                    <div class="filler"></div>                       
 
-                </div>
+</div>
             </div>
         }
     </div>

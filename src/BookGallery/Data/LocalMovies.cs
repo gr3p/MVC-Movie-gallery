@@ -11,8 +11,6 @@ namespace MovieGallery.Data
     {
         private string path = @"c:\temp";
 
-        private List<string> ListOfMovies;
-
         public List<string> GetMoviesfromDirList()
         {
             var list = Directory.GetDirectories(path).ToList();

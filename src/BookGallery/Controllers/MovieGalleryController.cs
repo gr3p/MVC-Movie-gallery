@@ -12,19 +12,17 @@ namespace MovieGallery.Controllers
 {
     public class MovieGalleryController : Controller
     {
-        
-
         public ActionResult Detail(int id)
         {
             if(id == 0)
             {
                 return HttpNotFound();
             }
-
             var repo = new MovieGalleryRepository();
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
             detailsAboutMovie.Credits = repo.GetMovieCredits(id);
+
             return View("~/views/moviegallery/detail.cshtml",detailsAboutMovie);
         }
         
@@ -33,9 +31,9 @@ namespace MovieGallery.Controllers
             ViewBag.viewheadline = "DVD/Blu-ray News";
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.GetRecentReleasedMovies();
-
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
-            return View("~/Views/MovieGallery/Index.cshtml",viewModel);
+
+            return View("~/Views/MovieGallery/Index.cshtml", viewModel);
         }
         public ActionResult ComingSoon()
         {
@@ -43,16 +41,14 @@ namespace MovieGallery.Controllers
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.MoviesComingSoon();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
+
             return View("~/Views/MovieGallery/Index.cshtml",viewModel);
         }
-
-
 
         public ActionResult LookUpMovie()
         {
             return View("~/Views/MovieGallery/LookUpMovie.cshtml");
         }
-
 
         public ActionResult LookUpLocalMovies()
         {
@@ -78,5 +74,7 @@ namespace MovieGallery.Controllers
            
             return View("~/Views/MovieGallery/LookUpMovie.cshtml", viewModel);
         }
+
+
     }
 }
