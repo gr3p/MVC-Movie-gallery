@@ -22,8 +22,11 @@ namespace MovieGallery.Controllers
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
             detailsAboutMovie.Credits = repo.GetMovieCredits(id);
+            var bluerayreleasedate = repo.GetBlueRayReleaseDate(id);
+            detailsAboutMovie.bluerayrelease = bluerayreleasedate != null ? bluerayreleasedate.release_date.ToString("yyyy-MM-dd") : "N/A";
+            
 
-            return View("~/views/moviegallery/detail.cshtml",detailsAboutMovie);
+            return View("~/views/moviegallery/detail.cshtml", detailsAboutMovie);
         }
         
         public ActionResult Index()

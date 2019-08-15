@@ -1,4 +1,7 @@
-﻿namespace MovieGallery.Models
+﻿using System;
+using MovieGallery.Data;
+
+namespace MovieGallery.Models
 {
 
     public class MovieDetailsItem
@@ -36,6 +39,7 @@
         public int? vote_count { get; set; }
 
         public MovieTrailers Trailers { get; set; }
+        public string bluerayrelease { get; set; }
     }
 
     public class Genre

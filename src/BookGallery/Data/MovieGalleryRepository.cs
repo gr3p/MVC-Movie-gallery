@@ -57,6 +57,14 @@ namespace MovieGallery.Data
             return API.MovieHttpClient.GetPopularMovies();
         }
 
+        public Release_Dates GetBlueRayReleaseDate(int movieId)
+        {
+            var result = API.MovieHttpClient.GetMovieReleaseDates(movieId);
+            var releaseDates = result.results.Where(x => x.iso_3166_1 == "US").Select(x => x.release_dates).ToList()
+                .FirstOrDefault();
+            return releaseDates?.Where(x => x.type == 5).FirstOrDefault();
+        }
+
         public MovieSearchItems GetRecentReleasedMovies()
         {
             return API.MovieHttpClient.GetRecentReleasedMovies();

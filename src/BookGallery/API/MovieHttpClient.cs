@@ -43,6 +43,11 @@ namespace MovieGallery.API
             return DownloadDataFromApi<MovieDetailsItem>(url);
         }
 
+        public static MovieReleaseDate GetMovieReleaseDates(int movieId)
+        {
+            var url = $"https://api.themoviedb.org/3/movie/{movieId}/release_dates?api_key={ApiKey}";
+            return DownloadDataFromApi<MovieReleaseDate>(url);
+        }
 
         public static MovieGenres GetMovieGenres()
         {
