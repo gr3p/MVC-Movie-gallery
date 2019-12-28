@@ -19,6 +19,7 @@ namespace MovieGallery.API
     {
         private static string ApiKey => "76b3c69a02263d0d7ff63b212d1e2c40";
 
+        private static WebClient webc = new WebClient();
         /// <summary>
         /// API Resources here: https://developers.themoviedb.org/ och https://www.themoviedb.org/documentation/api
         /// API KEY: 76b3c69a02263d0d7ff63b212d1e2c40
@@ -65,8 +66,7 @@ namespace MovieGallery.API
         public static MovieSearchItems GetRecentReleasedMovies()
         {
             MovieSearchItems results;
-            using (WebClient webc = new WebClient())
-            {
+            
                 string date = DateTime.Today.AddMonths(-2).ToString("yyyy-MM-dd"); ;
                 var url = $"https://api.themoviedb.org/3/discover/movie?" +
                           $"sort_by=popularity.desc" +
@@ -87,7 +87,7 @@ namespace MovieGallery.API
 
                     results = serializ.Deserialize<MovieSearchItems>(jsonreader);
                 }
-            };
+            
             return results;
 
         }
@@ -95,8 +95,7 @@ namespace MovieGallery.API
         public static MovieSearchItems GetMoviesComingSoon()
         {
             MovieSearchItems results;
-            using (WebClient webc = new WebClient())
-            {
+            
                 string tommorow = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd"); ;
                 var url = $"https://api.themoviedb.org/3/discover/movie?" +
                           $"sort_by=popularity.desc" +
@@ -114,7 +113,7 @@ namespace MovieGallery.API
                 {
                     results = serializ.Deserialize<MovieSearchItems>(jsonreader);
                 }
-            };
+            
             return results;
 
         }
@@ -130,12 +129,16 @@ namespace MovieGallery.API
             return DownloadDataFromApi<CreditsModel>(
                  $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key=76b3c69a02263d0d7ff63b212d1e2c40");
         }
+        public static ActorResultItem GetActor(string actorToFind, string pageIndex)
+        {
+            return DownloadDataFromApi<ActorResultItem>(
+                $"https://api.themoviedb.org/3/search/person?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query={actorToFind}&page={pageIndex}&include_adult=false");
+        }
 
         public static T DownloadDataFromApi<T>(string apiUrl) where T : class
         {
             T results;
-            using (WebClient webc = new WebClient())
-            {
+            
                 var url = $"{apiUrl}";
 
                 var searchResult = webc.DownloadData(url);
@@ -148,8 +151,7 @@ namespace MovieGallery.API
                 {
                     results = jsonSerializer.Deserialize<T>(jsonTextReader);
                 }
-            }
-
+                
             return results;
 
         }
@@ -164,5 +166,6 @@ namespace MovieGallery.API
 
         //Release Date for coco to dvd?
         //http://api.themoviedb.org/3/movie/354912/release_dates?api_key=76b3c69a02263d0d7ff63b212d1e2c40
+        
     }
 }

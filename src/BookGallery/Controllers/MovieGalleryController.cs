@@ -32,6 +32,7 @@ namespace MovieGallery.Controllers
         public ActionResult Index()
         {
             ViewBag.viewheadline = "DVD/Blu-ray News";
+            ViewBag.currentNews = "active-menu";
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.GetRecentReleasedMovies();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
@@ -41,6 +42,7 @@ namespace MovieGallery.Controllers
         public ActionResult ComingSoon()
         {
             ViewBag.viewheadline = "Coming Soon on DVD/Blu-ray";
+            ViewBag.comingSoon = "active-menu";
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.MoviesComingSoon();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
@@ -78,6 +80,23 @@ namespace MovieGallery.Controllers
             return View("~/Views/MovieGallery/LookUpMovie.cshtml", viewModel);
         }
 
+        [HttpPost]
+        public ActionResult LookUpActor(string actorToFind)
+        {
+            if (string.IsNullOrEmpty(actorToFind)) { return Redirect("Index"); }
+            ViewBag.SearchingFor = actorToFind;
+            var movieRepository = new MovieGalleryRepository();
+            var actorItem = movieRepository.SearchForActor(actorToFind);
+            var viewModel = new SearchActorViewModel<ActorResultItem>(actorItem);
+
+            return View("~/Views/MovieGallery/LookUpActor.cshtml", viewModel);
+
+            return null;
+
+        }
+
 
     }
+
+    
 }

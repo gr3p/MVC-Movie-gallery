@@ -166,6 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActorResultItem.cs" />
     <Compile Include="Models\API\MovieGenres.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\BookGalleryItem.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\MovieReleaseDate.cs" />
     <Compile Include="Models\MovieSearchItems.cs" />
     <Compile Include="Models\MovieTrailers.cs" />
+    <Compile Include="Models\ViewModels\SearchActorViewModel.cs" />
     <Compile Include="Models\ViewModels\SearchMovieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,6 +197,7 @@
     <Content Include="Views\MovieGallery\LookUpMovie.cshtml" />
     <Content Include="Views\Shared\_Overview.cshtml" />
     <Content Include="Views\MovieGallery\LookUpLocalMovies.cshtml" />
+    <Content Include="Views\MovieGallery\LookUpActor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

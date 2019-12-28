@@ -127,6 +127,9 @@ textarea {
     margin-right: 5px;
     margin-top: 5px;
 }
+.btn-menu.active-menu {
+    color: chartreuse;
+}
 .search-input {
     margin-top: 5px;
 }

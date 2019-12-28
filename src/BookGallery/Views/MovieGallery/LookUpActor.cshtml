@@ -1,0 +1,48 @@
+@using MovieGallery.Models;
+@using MovieGallery.Models.ViewModels;
+
+@model  SearchActorViewModel<ActorResultItem>
+@{
+    ViewBag.Title = "LookupActor";
+    ViewBag.ShowBackBar = true;
+    
+
+}
+
+<h2>Actor Results</h2>
+<div class="row">
+    <div class="col-md-12">
+     
+        @if (Model != null)
+        {
+
+            <h2>Hits: @(Model.Actor.total_results)</h2>
+
+            if (Model.Actor.results != null)
+            {
+                foreach (var actor in Model.Actor.results)
+                { @*<a href=@Url.Action("Detail", new {id = movie.id})>*@
+                        <div class="row row-space">
+                            <div class="col-md-3">
+                                <img src="@($"http://image.tmdb.org/t/p/w185/{actor.profile_path}")"
+                                     alt="@actor.name" class="poster img-responsive" />
+                            </div>
+                            <div class="col-md-9">
+                                <div class="well">
+
+                                    <h5><label>Actor:&nbsp;</label>@actor.name</h5>
+                                    <h5><label>Popularity:&nbsp;</label>@actor.popularity</h5>
+                                    
+                                </div>
+                                <h4>Description</h4>
+                                                            </div>
+
+                        </div>
+                    @*</a>*@
+                }
+            }
+        }
+
+    </div>
+</div>
+
