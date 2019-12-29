@@ -1,31 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@using MovieGallery.Models
+<!DOCTYPE html>
 <html>
 <head>
-   
-    <meta charset="utf-8"/>
+
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slimy IMDb</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
-    <link href="~/Content/site.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script type="text/javascript">
         var appInsights = window.appInsights ||
-            function(a) {
+            function (a) {
                 function b(a) {
-                    c[a] = function() {
+                    c[a] = function () {
                         var b = arguments;
-                        c.queue.push(function() { c[a].apply(c, b) })
+                        c.queue.push(function () { c[a].apply(c, b) })
                     }
                 }
 
                 var c = { config: a }, d = document, e = window;
-                setTimeout(function() {
+                setTimeout(function () {
                     var b = d.createElement("script");
                     b.src =
                         a.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js", d.getElementsByTagName("script")[0]
-                        .parentNode.appendChild(b);
+                            .parentNode.appendChild(b);
                 });
                 try {
                     c.cookie = d.cookie;
@@ -39,7 +40,7 @@
                         .disableExceptionTracking) {
                     f = "onerror", b("_" + f);
                     var g = e[f];
-                    e[f] = function(a, b, d, e, h) {
+                    e[f] = function (a, b, d, e, h) {
                         var i = g && g(a, b, d, e, h);
                         return !0 !== i && c["_" + f](a, b, d, e, h), i
                     }
@@ -70,19 +71,21 @@
                 {
                     <input class="glowing-border search-input flex-item" type="text" id="movieToFind" name="movieToFind" autofocus placeholder="Find Movies and Dvds..." />
                     <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
-
+                    @Html.DropDownList("SearchType", new SelectList(Enum.GetValues(typeof(SearchTypeSelect.DropdownSelect))),"Search Type", new
+                    {
+                        @class = $"btn btn-default btn-menu flex-item"})
+                    }
                     @Html.ActionLink("Upcoming Movie Releases", "ComingSoon", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.comingSoon} " })
                     @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews}" })
-
-                }
-                @using (Html.BeginForm("LookUpActor", "MovieGallery", FormMethod.Post))
-                {
-                    <input class="glowing-border search-input flex-item" type="text" id="actorToFind" name="actorToFind" autofocus placeholder="Find Actors.." />
-                    <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
-                }
+                    
+                @*@using (Html.BeginForm("LookUpActor", "MovieGallery", FormMethod.Post))
+                    {
+                        <input class="glowing-border search-input flex-item" type="text" id="actorToFind" name="actorToFind" autofocus placeholder="Find Actors.." />
+                        <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
+                    }*@
 
             </div>
-           
+
         </div>
 
     </div>
@@ -93,13 +96,13 @@
             <p>&copy; @DateTime.Now.Year - Slimy Movies</p>
         </footer>
     </div>
-  
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js" async></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js" async></script>
     <script src="~/Scripts/jquery.fitvids.js"></script>
 
     <script>
-       
+
     </script>
 </body>
 </html>

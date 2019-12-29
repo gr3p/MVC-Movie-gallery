@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.Expressions;
 using MovieGallery.Data;
 using MovieGallery.Models;
 using MovieGallery.Models.ViewModels;
@@ -66,12 +67,17 @@ namespace MovieGallery.Controllers
         }
 
         [HttpPost]
-        public ActionResult LookUpMovie(string movieToFind)
+        public ActionResult LookUpMovie(string movieToFind, FormCollection form)
         {
             if (string.IsNullOrEmpty(movieToFind))
             {
                 return Redirect("Index");
             }
+
+            if (form["SearchType"] != null && form["SearchType"] == SearchTypeSelect.DropdownSelect.Actors.ToString())
+            {
+               return new MovieGalleryController().LookUpActor(movieToFind);
+            };
             ViewBag.SearchingFor = movieToFind;
             var movieRepository = new MovieGalleryRepository();
             var movieItem = movieRepository.SearchForAMovie(movieToFind);
@@ -91,7 +97,6 @@ namespace MovieGallery.Controllers
 
             return View("~/Views/MovieGallery/LookUpActor.cshtml", viewModel);
 
-            return null;
 
         }
 
