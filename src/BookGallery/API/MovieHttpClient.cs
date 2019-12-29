@@ -134,6 +134,11 @@ namespace MovieGallery.API
             return DownloadDataFromApi<ActorResultItem>(
                 $"https://api.themoviedb.org/3/search/person?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query={actorToFind}&page={pageIndex}&include_adult=false");
         }
+        public static ActorDetails GetActorDetails(int actorId)
+        {
+            return DownloadDataFromApi<ActorDetails>(
+                $"https://api.themoviedb.org/3/person/{actorId}?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US");
+        }
 
         public static T DownloadDataFromApi<T>(string apiUrl) where T : class
         {
@@ -166,6 +171,7 @@ namespace MovieGallery.API
 
         //Release Date for coco to dvd?
         //http://api.themoviedb.org/3/movie/354912/release_dates?api_key=76b3c69a02263d0d7ff63b212d1e2c40
-        
+
+       
     }
 }

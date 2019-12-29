@@ -88,5 +88,9 @@ namespace MovieGallery.Data
         {
             return API.MovieHttpClient.GetActor(actorToFind, pageIndex);
         }
+        public ActorDetails SearchForActorDetails(int actorId)
+        {
+            return API.MovieHttpClient.GetActorDetails(actorId);
+        }
     }
 }
