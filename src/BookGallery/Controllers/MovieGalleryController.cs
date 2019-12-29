@@ -93,6 +93,23 @@ namespace MovieGallery.Controllers
             ViewBag.SearchingFor = actorToFind;
             var movieRepository = new MovieGalleryRepository();
             var actorItem = movieRepository.SearchForActor(actorToFind);
+            //Limit detail calls.
+            if (actorItem.results.Length >= 9)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    actorItem.results[i].ActorDetails = movieRepository.SearchForActorDetails(actorItem.results[i].id);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < actorItem.results.Length; i++)
+                {
+                    actorItem.results[i].ActorDetails = movieRepository.SearchForActorDetails(actorItem.results[i].id);
+                }
+            }
+
+            //var actorItemDetails = movieRepository.DetailsForActor(actorItem.)
             var viewModel = new SearchActorViewModel<ActorResultItem>(actorItem);
 
             return View("~/Views/MovieGallery/LookUpActor.cshtml", viewModel);

@@ -11,6 +11,9 @@ namespace MovieGallery.Models.ViewModels
         public SearchActorViewModel(ActorResultItem actor)
         {
             Actor = actor;
+            Actor.results = actor.results.OrderByDescending(x => !string.IsNullOrEmpty(x.profile_path))
+                .ThenByDescending(y => y.popularity)
+                .ToArray();
         }
         
     }

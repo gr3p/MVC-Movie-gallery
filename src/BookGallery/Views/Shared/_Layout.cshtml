@@ -73,7 +73,7 @@
                     <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
                     @Html.DropDownList("SearchType", new SelectList(Enum.GetValues(typeof(SearchTypeSelect.DropdownSelect))),"Search Type", new
                     {
-                        @class = $"btn btn-default btn-menu flex-item"})
+                        @class = $"btn btn-default btn-menu flex-item small"})
                     }
                     @Html.ActionLink("Upcoming Movie Releases", "ComingSoon", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.comingSoon} " })
                     @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews}" })
