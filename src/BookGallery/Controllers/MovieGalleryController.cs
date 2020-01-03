@@ -56,15 +56,15 @@ namespace MovieGallery.Controllers
             return View("~/Views/MovieGallery/LookUpMovie.cshtml");
         }
 
-        public ActionResult LookUpLocalMovies()
-        {
-            using (var context = new Context.Context())
-            {
-                var comicBooks = context.movieSearchItems.ToList();
+        //public ActionResult LookUpLocalMovies()
+        //{
+        //    using (var context = new Context.Context())
+        //    {
+        //        var comicBooks = context.movieSearchItems.ToList();
 
-                return View("~/Views/MovieGallery/LookUpLocalMovies.cshtml", comicBooks);
-            }
-        }
+        //        return View("~/Views/MovieGallery/LookUpLocalMovies.cshtml", comicBooks);
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult LookUpMovie(string movieToFind, FormCollection form)
@@ -76,7 +76,7 @@ namespace MovieGallery.Controllers
 
             if (form["SearchType"] != null && form["SearchType"] == SearchTypeSelect.DropdownSelect.Actors.ToString())
             {
-               return new MovieGalleryController().LookUpActor(movieToFind);
+               return new MovieGalleryController().LookUpActors(movieToFind);
             };
             ViewBag.SearchingFor = movieToFind;
             var movieRepository = new MovieGalleryRepository();
@@ -87,12 +87,12 @@ namespace MovieGallery.Controllers
         }
 
         [HttpPost]
-        public ActionResult LookUpActor(string actorToFind)
+        public ActionResult LookUpActors(string actorToSearchFor)
         {
-            if (string.IsNullOrEmpty(actorToFind)) { return Redirect("Index"); }
-            ViewBag.SearchingFor = actorToFind;
+            if (string.IsNullOrEmpty(actorToSearchFor)) { return Redirect("Index"); }
+            ViewBag.SearchingFor = actorToSearchFor;
             var movieRepository = new MovieGalleryRepository();
-            var actorItem = movieRepository.SearchForActor(actorToFind);
+            var actorItem = movieRepository.SearchForActors(actorToSearchFor);
             //Limit detail calls.
             if (actorItem.results.Length >= 9)
             {
@@ -112,8 +112,25 @@ namespace MovieGallery.Controllers
             //var actorItemDetails = movieRepository.DetailsForActor(actorItem.)
             var viewModel = new SearchActorViewModel<ActorResultItem>(actorItem);
 
-            return View("~/Views/MovieGallery/LookUpActor.cshtml", viewModel);
+            return View("~/Views/MovieGallery/LookUpActors.cshtml", viewModel);
 
+
+        }
+        [HttpGet]
+        public ActionResult LookUpActor(string actorToSearchFor)
+        {
+            if (string.IsNullOrEmpty(actorToSearchFor)) { return Redirect("Index"); }
+            ViewBag.SearchingFor = actorToSearchFor;
+            var movieRepository = new MovieGalleryRepository();
+            var actorItem = movieRepository.SearchForActors(actorToSearchFor);
+            var theActor = actorItem.results.FirstOrDefault();
+
+            if (theActor == null) return Redirect("Index");
+
+            theActor.ActorDetails = movieRepository.SearchForActorDetails(theActor.id);
+            var viewModel = new SearchActorViewModel<ActorResultItem>(actorItem);
+
+            return View("~/Views/MovieGallery/LookUpActors.cshtml", viewModel);
 
         }
 

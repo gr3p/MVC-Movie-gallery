@@ -84,9 +84,9 @@ namespace MovieGallery.Data
             return API.MovieHttpClient.GetCreditsForMovie(movieId);
         }
 
-        public ActorResultItem SearchForActor(string actorToFind, string pageIndex = "1")
+        public ActorResultItem SearchForActors(string actorToFind, string pageIndex = "1")
         {
-            return API.MovieHttpClient.GetActor(actorToFind, pageIndex);
+            return API.MovieHttpClient.GetActors(actorToFind, pageIndex);
         }
         public ActorDetails SearchForActorDetails(int actorId)
         {

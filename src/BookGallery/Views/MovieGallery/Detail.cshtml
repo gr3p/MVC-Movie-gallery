@@ -2,9 +2,9 @@
 @using MovieGallery.Data
 @using MovieGallery.Models.Helpers
 @{
-                /**/
-  
-                ViewBag.ShowBackBar = true;
+    /**/
+
+    ViewBag.ShowBackBar = true;
 }
 
 
@@ -51,27 +51,21 @@
             <h5><label>Starring:</label></h5>
             <div class="clearfix">
 
-                @foreach (var item in Model.Credits.cast.Take(3))
+                @foreach (var item in Model.Credits.cast.Take(6))
                 {
-                    <div class="img-container">
-                        <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
-                        <p>@item.name</p>
-                        <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
-                    </div>
-
+                    <a href=@Url.Action("LookUpActor","MovieGallery", new {actorToSearchFor = item.name})>
+                        <div class="img-container">
+                            <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
+                            <p>@item.name</p>
+                            <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
+                        </div>
+                    </a>
                 }
 
             </div>
-
-
         </div>
-
-
-
     </div>
     <div>
     </div>
-
-
 
 </div>

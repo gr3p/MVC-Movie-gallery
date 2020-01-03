@@ -78,9 +78,9 @@
                     @Html.ActionLink("Upcoming Movie Releases", "ComingSoon", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.comingSoon} " })
                     @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews}" })
                     
-                @*@using (Html.BeginForm("LookUpActor", "MovieGallery", FormMethod.Post))
+                @*@using (Html.BeginForm("LookUpActors", "MovieGallery", FormMethod.Post))
                     {
-                        <input class="glowing-border search-input flex-item" type="text" id="actorToFind" name="actorToFind" autofocus placeholder="Find Actors.." />
+                        <input class="glowing-border search-input flex-item" type="text" id="actorToSearchFor" name="actorToSearchFor" autofocus placeholder="Find Actors.." />
                         <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
                     }*@
 

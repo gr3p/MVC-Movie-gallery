@@ -129,11 +129,12 @@ namespace MovieGallery.API
             return DownloadDataFromApi<CreditsModel>(
                  $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key=76b3c69a02263d0d7ff63b212d1e2c40");
         }
-        public static ActorResultItem GetActor(string actorToFind, string pageIndex)
+        public static ActorResultItem GetActors(string actorToFind, string pageIndex)
         {
             return DownloadDataFromApi<ActorResultItem>(
                 $"https://api.themoviedb.org/3/search/person?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query={actorToFind}&page={pageIndex}&include_adult=false");
         }
+        
         public static ActorDetails GetActorDetails(int actorId)
         {
             return DownloadDataFromApi<ActorDetails>(

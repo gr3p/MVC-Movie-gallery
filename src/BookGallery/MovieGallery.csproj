@@ -199,7 +199,7 @@
     <Content Include="Views\MovieGallery\LookUpMovie.cshtml" />
     <Content Include="Views\Shared\_Overview.cshtml" />
     <Content Include="Views\MovieGallery\LookUpLocalMovies.cshtml" />
-    <Content Include="Views\MovieGallery\LookUpActor.cshtml" />
+    <Content Include="Views\MovieGallery\LookUpActors.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
