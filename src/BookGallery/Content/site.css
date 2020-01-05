@@ -154,7 +154,10 @@ textarea {
     /* float: left; */
     /* clear: both; */
 }
-
+.flex-line {
+    width: 100%
+    
+}
 .flex-item {
     /* border:2px red solid; */
     /* flex-grow:0; */
@@ -162,7 +165,7 @@ textarea {
     justify-content: left;
 }
 .flex-item.small {
-    width: 30%;
+    width: 20%;
 }
  
 .search__label{color: white;margin-top: 0px;padding-top: 5px;}

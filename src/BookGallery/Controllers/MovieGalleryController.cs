@@ -74,7 +74,7 @@ namespace MovieGallery.Controllers
                 return Redirect("Index");
             }
 
-            if (form["SearchType"] != null && form["SearchType"] == SearchTypeSelect.DropdownSelect.Actors.ToString())
+            if (form["SearchType"] != null && form["SearchType"] == "Actors")
             {
                return new MovieGalleryController().LookUpActors(movieToFind);
             };

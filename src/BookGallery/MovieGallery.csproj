@@ -179,7 +179,6 @@
     <Compile Include="Models\MovieReleaseDate.cs" />
     <Compile Include="Models\MovieSearchItems.cs" />
     <Compile Include="Models\MovieTrailers.cs" />
-    <Compile Include="Models\SearchTypeSelect.cs" />
     <Compile Include="Models\ViewModels\SearchActorViewModel.cs" />
     <Compile Include="Models\ViewModels\SearchMovieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

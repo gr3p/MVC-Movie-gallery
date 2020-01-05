@@ -1,4 +1,16 @@
 ﻿@using MovieGallery.Models
+@{
+    var movieSelect = new SelectListItem() { Text = "Movies", Value = "Movies", Selected = true};
+    var actorSelect = new SelectListItem() { Text = "Actors", Value = "Actors", Selected = false };
+
+    var selectItems = new List<SelectListItem>();
+    selectItems.Add(movieSelect);
+    selectItems.Add(actorSelect);
+
+
+    SelectList searchSelectList = new SelectList(selectItems, "Value", "Text",2);
+
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,17 +78,23 @@
             </div>
 
             <div class="flex-container">
+    
 
                 @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
                 {
                     <input class="glowing-border search-input flex-item" type="text" id="movieToFind" name="movieToFind" autofocus placeholder="Find Movies and Dvds..." />
                     <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
-                    @Html.DropDownList("SearchType", new SelectList(Enum.GetValues(typeof(SearchTypeSelect.DropdownSelect))),"Search Type", new
-                    {
-                        @class = $"btn btn-default btn-menu flex-item small"})
-                    }
                     @Html.ActionLink("Upcoming Movie Releases", "ComingSoon", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.comingSoon} " })
-                    @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews}" })
+                    @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews} " })
+                    
+                    <br/>
+                    <div class="btn btn-default btn-menu flex-item active-menu "><label class="" for="SearchType">For:</label></div>
+                    @Html.DropDownList("SearchType", searchSelectList, new { @class = $"btn btn-default btn-menu flex-item small" })
+                
+
+
+                }
+                   
                     
                 @*@using (Html.BeginForm("LookUpActors", "MovieGallery", FormMethod.Post))
                     {
