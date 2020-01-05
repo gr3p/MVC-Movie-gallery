@@ -1,8 +1,25 @@
 ﻿@using MovieGallery.Models
 @{
-    var movieSelect = new SelectListItem() { Text = "Movies", Value = "Movies", Selected = true};
-    var actorSelect = new SelectListItem() { Text = "Actors", Value = "Actors", Selected = false };
+    SelectListItem movieSelect = null;
+    SelectListItem actorSelect = null;
+    if (ViewBag.dropDownState == "Actors")
+    {
+        movieSelect = new SelectListItem() { Text = "Movies", Value = "Movies"};
+        actorSelect = new SelectListItem() { Text = "Actors", Value = "Active", Selected = true };
+    }
+    else if(ViewBag.dropDownState == "Movies")
+    {
+        movieSelect = new SelectListItem() { Text = "Movies", Value = "Active", Selected = true};
+        actorSelect = new SelectListItem() { Text = "Actors", Value = "Actors" };
+    }
+    else
+    { 
+        //Default
+        movieSelect = new SelectListItem() { Text = "Movies", Value = "Active", Selected = true};
+        actorSelect = new SelectListItem() { Text = "Actors", Value = "Actors" };
 
+    }
+    
     var selectItems = new List<SelectListItem>();
     selectItems.Add(movieSelect);
     selectItems.Add(actorSelect);
@@ -64,6 +81,24 @@
 
         window.appInsights =
             appInsights, appInsights.queue && 0 === appInsights.queue.length && appInsights.trackPageView();
+
+        document.addEventListener('DOMContentLoaded',
+            () => {
+                var doc = document.getElementById("SearchTypes");
+                for (i = 0; i < doc.options.length; i++) {
+                    var option = doc.options[i];
+                    if (option.value === 'Active') {
+                        option.setAttribute("selected", "selected");
+                    }
+                }
+
+
+            });
+
+         
+     
+           
+         
     </script>
 </head>
 <body>
@@ -83,13 +118,13 @@
                 @using (Html.BeginForm("LookUpMovie", "MovieGallery", FormMethod.Post))
                 {
                     <input class="glowing-border search-input flex-item" type="text" id="movieToFind" name="movieToFind" autofocus placeholder="Find Movies and Dvds..." />
+                    @Html.DropDownList("SearchTypes", searchSelectList, new { @class = $"btn btn-default btn-menu flex-item small" })
                     <input class="btn-menu btn-default slimy-button flex-item" type="submit" id="submitId" value="Search" />
                     @Html.ActionLink("Upcoming Movie Releases", "ComingSoon", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.comingSoon} " })
                     @Html.ActionLink("New On DVD/Blu-ray", "Index", "MovieGallery", null, new { @class = $"btn btn-default btn-menu flex-item {ViewBag.currentNews} " })
-                    
-                    <br/>
-                    <div class="btn btn-default btn-menu flex-item active-menu "><label class="" for="SearchType">For:</label></div>
-                    @Html.DropDownList("SearchType", searchSelectList, new { @class = $"btn btn-default btn-menu flex-item small" })
+                  
+                  
+                  
                 
 
 

@@ -35,12 +35,23 @@
                         <div class="well">
                             <h3><label>Actor:&nbsp;</label>@actor.name</h3>
                             <h5><label>Popularity:&nbsp;</label>@actor.popularity</h5>
-                            @if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-",""), out int dob))
+
+                            @if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dobb ) && actor.ActorDetails?.deathday != null)
+                            {
+                                Int32.TryParse(actor.ActorDetails.deathday.Replace("-", ""), out int dead);
+                                int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                                int age = (dead - dobb) / 10000;
+                                <h5><label>Born:&nbsp;</label>@($"{actor.ActorDetails?.birthday}")</h5>
+                                <h5><label>Dead:&nbsp;</label>@($"{age}")</h5>
+                            }
+                            //Alive
+                            else if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dob))
                             {
                                 int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
                                 int age = (now - dob) / 10000;
-                                <h5><label>Age:&nbsp;</label>@($"{age}")</h5>
+                                <h5><label>Age:&nbsp;</label>@($"{age} ({actor.ActorDetails?.birthday})")</h5>
                             }
+
                             <h5><label>Biography:&nbsp; </label>@($"{actor.ActorDetails?.biography}")</h5>
 
                         </div>

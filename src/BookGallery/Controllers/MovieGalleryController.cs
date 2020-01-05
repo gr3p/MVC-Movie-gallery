@@ -15,7 +15,9 @@ namespace MovieGallery.Controllers
     {
         public ActionResult Detail(int id)
         {
-            if(id == 0)
+            ViewBag.dropDownState = "Movies";
+
+            if (id == 0)
             {
                 return Redirect("Index");
             }
@@ -35,6 +37,8 @@ namespace MovieGallery.Controllers
         {
             ViewBag.viewheadline = "DVD/Blu-ray News";
             ViewBag.currentNews = "active-menu";
+            ViewBag.dropDownState = "Movies";
+
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.GetRecentReleasedMovies();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
@@ -45,6 +49,8 @@ namespace MovieGallery.Controllers
         {
             ViewBag.viewheadline = "Coming Soon on DVD/Blu-ray";
             ViewBag.comingSoon = "active-menu";
+            ViewBag.dropDownState = "Movies";
+
             var repo = new MovieGalleryRepository();
             var movieRepo = repo.MoviesComingSoon();
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(repo, movieRepo.MovieItems, movieRepo.page, movieRepo.total_pages, movieRepo.total_results);
@@ -54,32 +60,27 @@ namespace MovieGallery.Controllers
 
         public ActionResult LookUpMovie()
         {
+            ViewBag.dropDownState = "movies";
             return View("~/Views/MovieGallery/LookUpMovie.cshtml");
         }
 
-        //public ActionResult LookUpLocalMovies()
-        //{
-        //    using (var context = new Context.Context())
-        //    {
-        //        var comicBooks = context.movieSearchItems.ToList();
-
-        //        return View("~/Views/MovieGallery/LookUpLocalMovies.cshtml", comicBooks);
-        //    }
-        //}
-
+       
         [HttpPost]
         public ActionResult LookUpMovie(string movieToFind, FormCollection form)
         {
+            ViewBag.dropDownState = "Movies";
+            ViewBag.SearchingFor = movieToFind;
+
             if (string.IsNullOrEmpty(movieToFind))
             {
                 return Redirect("Index");
             }
 
-            if (form["SearchType"] != null && form["SearchType"] == "Actors")
+            if (form["SearchTypes"] != null && form["SearchTypes"] == "Actors")
             {
                return new MovieGalleryController().LookUpActors(movieToFind);
             };
-            ViewBag.SearchingFor = movieToFind;
+       
             var movieRepository = new MovieGalleryRepository();
             var movieItem = movieRepository.SearchForAMovie(movieToFind);
             var viewModel = new SearchMovieViewModel<MovieSearchItems>(movieRepository, movieItem.MovieItems, movieItem.page, movieItem.total_pages, movieItem.total_results);
@@ -90,6 +91,8 @@ namespace MovieGallery.Controllers
         [HttpPost]
         public ActionResult LookUpActors(string actorToSearchFor)
         {
+            ViewBag.dropDownState = "Actors";
+
             if (string.IsNullOrEmpty(actorToSearchFor)) { return Redirect("Index"); }
             ViewBag.SearchingFor = actorToSearchFor;
             var movieRepository = new MovieGalleryRepository();
@@ -120,6 +123,7 @@ namespace MovieGallery.Controllers
         [HttpGet]
         public ActionResult LookUpActor(string actorToSearchFor)
         {
+            ViewBag.dropDownState = "Actors";
             if (string.IsNullOrEmpty(actorToSearchFor)) { return Redirect("Index"); }
             ViewBag.SearchingFor = actorToSearchFor;
             var movieRepository = new MovieGalleryRepository();
