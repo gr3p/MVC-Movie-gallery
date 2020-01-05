@@ -17,8 +17,9 @@ namespace MovieGallery.Controllers
         {
             if(id == 0)
             {
-                return HttpNotFound();
+                return Redirect("Index");
             }
+         
             var repo = new MovieGalleryRepository();
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);

@@ -167,154 +167,194 @@ textarea {
 .flex-item.small {
     width: 20%;
 }
- 
-.search__label{color: white;margin-top: 0px;padding-top: 5px;}
 
-.search-wrapper, search-center, input {
-    color: black;
+.flex2-item {
+    width: 100%
 }
 
-.well h4 {
-    color: black;
-}
-
-#custom-search-input {
-    margin:0;
-    margin-top: 10px;
-    padding: 0;
-}
- 
-#custom-search-input .search-query {
-    padding-right: 3px;
-    padding-right: 4px \9;
-    padding-left: 3px;
-    padding-left: 4px \9;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
- 
-    margin-bottom: 0;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}
- 
-#custom-search-input button {
-    border: 0;
-    background: none;
-    /** belows styles are working good */
-    padding: 2px 5px;
-    margin-top: 2px;
-    position: relative;
-    left: -28px;
-    /* IE7-8 doesn't have border-radius, so don't indent the padding */
-    margin-bottom: 0;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    color:#D9230F;
-}
- 
-.search-query:focus + button {
-    z-index: 3;   
-}
-input[type=text] {
-    border-radius: 1px;
-    height: 38px;
-    font-size: 14px;
-    box-shadow: none;
-    line-height: 100%;
-    padding: 5px;
-    /* padding-right: 5px; */
-    margin-right: 5px;
-    border: 0;
-}
-
-
-.row-space{margin-top: 30px;}
-
-i.fa-star {
-    color: orange;
-    display: inline;
-    size: 3px;
-    font-size: 15px;
-}
-
-.list {
+.flex2-container {
     display: flex;
     flex-wrap: wrap;
 }
-.list-item {
-    display: flex; 
-    padding: 0.5em;
-    width: 100%;
+
+.flex2-container > div {
+    flex: 0 50%;
+ 
+    box-sizing: border-box
 }
-@media all and (min-width: 40em) {
-    .list-item {
-        width: 50%;
+@media all and (max-width: 40em) {
+    .flex2-container > div {
+        flex: 0 100%;
     }
-}
-@media all and (min-width: 60em) {
-    .list-item {
-        width: 33.33%;
-    }
-}
-.list-content {
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    width: 100%;
-}
-.list-content p {
-    flex: 1 0 auto;
 }
 
-.video-content {
-    height: 600px;
-}
-.fitvids {
-    height: 100%;
-    width: 100%;
-}
-.image-poster-container {
-    margin-bottom: 10px;
-}
-@media all and (max-width: 736px) {
-    .flex-container {
+    .search__label {
+        color: white;
+        margin-top: 0px;
+        padding-top: 5px;
+    }
+
+    .search-wrapper, search-center, input {
+        color: black;
+    }
+
+    .well h4 {
+        color: black;
+    }
+
+    #custom-search-input {
+        margin: 0;
+        margin-top: 10px;
+        padding: 0;
+    }
+
+        #custom-search-input .search-query {
+            padding-right: 3px;
+            padding-right: 4px \9;
+            padding-left: 3px;
+            padding-left: 4px \9;
+            /* IE7-8 doesn't have border-radius, so don't indent the padding */
+            margin-bottom: 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #custom-search-input button {
+            border: 0;
+            background: none;
+            /** belows styles are working good */
+            padding: 2px 5px;
+            margin-top: 2px;
+            position: relative;
+            left: -28px;
+            /* IE7-8 doesn't have border-radius, so don't indent the padding */
+            margin-bottom: 0;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            color: #D9230F;
+        }
+
+    .search-query:focus + button {
+        z-index: 3;
+    }
+
+    input[type=text] {
+        border-radius: 1px;
+        height: 38px;
+        font-size: 14px;
+        box-shadow: none;
+        line-height: 100%;
+        padding: 5px;
+        /* padding-right: 5px; */
+        margin-right: 5px;
+        border: 0;
+    }
+
+
+    .row-space {
+        margin-top: 30px;
+    }
+
+    i.fa-star {
+        color: orange;
+        display: inline;
+        size: 3px;
+        font-size: 15px;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .list-item {
+        display: flex;
+        padding: 0.5em;
+        width: 100%;
+    }
+
+    @media all and (min-width: 40em) {
+        .list-item {
+            width: 50%;
+        }
+    }
+
+    @media all and (min-width: 60em) {
+        .list-item {
+            width: 33.33%;
+        }
+    }
+
+    .list-content {
+        display: flex;
         flex-direction: column;
+        padding: 1em;
+        width: 100%;
     }
-}
 
-@media all and (max-width: 480px) {
-}
+        .list-content p {
+            flex: 1 0 auto;
+        }
 
-.img-container {
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-}
+    .video-content {
+        height: 600px;
+    }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-}
+    .fitvids {
+        height: 100%;
+        width: 100%;
+    }
+
+    .image-poster-container {
+        margin-bottom: 10px;
+    }
+
+    @media all and (max-width: 736px) {
+        .flex-container {
+            flex-direction: column;
+        }
+    }
+
+    @media all and (max-width: 480px) {
+    }
+
+    .img-container {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+    .image-padding {
+        padding: 5px;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 
 
-a {
-    color: #0a5d00;
-    text-decoration-color: #0a5d00!important;
-}
-h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
-    color: #089000;
-}
-.detailInfo {
-   
-    line-height: 5px;
-}
-.filler {
-    height: 40px;
-}
-.fa-lg {
+    a {
+        color: #0a5d00;
+        text-decoration-color: #0a5d00 !important;
+    }
 
-    line-height:initial; 
-     vertical-align: initial; 
-}
+    h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
+        color: #089000;
+    }
+
+    .detailInfo {
+        line-height: 5px;
+    }
+
+    .filler {
+        height: 40px;
+    }
+
+    .fa-lg {
+        line-height: initial;
+        vertical-align: initial;
+    }

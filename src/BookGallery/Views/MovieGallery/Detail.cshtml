@@ -46,21 +46,23 @@
 <div class="col-md-12">
     <div class="row">
         <div class="well">
-            <h4>Description:</h4>
+            <h3>Description:</h3>
             <div>@Html.Raw(Model.overview)</div>
-            <h5><label>Starring:</label></h5>
+            <h3><label>Starring:</label></h3>
             <div class="clearfix">
-
-                @foreach (var item in Model.Credits.cast.Take(6))
-                {
-                    <a href=@Url.Action("LookUpActor","MovieGallery", new {actorToSearchFor = item.name})>
-                        <div class="img-container">
-                            <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
-                            <p>@item.name</p>
-                            <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
+                <div class="flex2-container">
+                    @foreach (var item in Model.Credits.cast.Take(6))
+                    {<div class="flex2-item">
+                            <a href=@Url.Action("LookUpActor","MovieGallery", new {actorToSearchFor = item.name})>
+                                <div class="image-padding">
+                                    <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
+                                    <p>@item.name</p>
+                                    <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                }
+                    }
+                </div>
 
             </div>
         </div>
