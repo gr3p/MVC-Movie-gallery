@@ -12,16 +12,16 @@ namespace MovieGallery.Context
     {
         protected override void Seed(Context context)
         {
-            var localMovies = new LocalMovies();
-            var localdirs = localMovies.GetMoviesfromDirList();
-            var lmovies = localMovies.CleanReleaseNames(localdirs);
+            //var localMovies = new LocalMovies();
+            //var localdirs = localMovies.GetMoviesfromDirList();
+            //var lmovies = localMovies.CleanReleaseNames(localdirs);
 
-            MovieGalleryRepository mrepo = new MovieGalleryRepository();
-            foreach (var movie in lmovies)
-            {
-             var searchResult = mrepo.SearchForAMovie(movie);
-             context.movieSearchItems.Add(searchResult);
-            }
+            //MovieGalleryRepository mrepo = new MovieGalleryRepository();
+            //foreach (var movie in lmovies)
+            //{
+            // var searchResult = mrepo.SearchForAMovie(movie);
+            // context.movieSearchItems.Add(searchResult);
+            //}
 
             context.SaveChanges();
         }

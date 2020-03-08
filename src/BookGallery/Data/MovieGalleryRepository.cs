@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Web;
 using MovieGallery.Models;
 using MovieGallery.Models.API;
@@ -16,24 +17,29 @@ namespace MovieGallery.Data
         public MovieGenres MovieGenre { get; set; }
 
         private MovieGalleryRepository Repo { get; set; }
-        public MovieGalleryRepository()
+        public  MovieGalleryRepository()
         {
             Repo = this;
             ServicePointManager.ServerCertificateValidationCallback =
                 delegate(object sender, X509Certificate certificate, X509Chain chain,
                     SslPolicyErrors sslPolicyErrors) { return true; };
 
+            GetMovieGenres();
+        }
+
+        private void GetMovieGenres()
+        {
             MovieGenre = API.MovieHttpClient.GetMovieGenres();
         }
 
         public MovieSearchItems SearchForAMovie(string SearchText)
         {
-            return API.MovieHttpClient.GetMovieResults(SearchText);
+            return  API.MovieHttpClient.GetMovieResults(SearchText).Result;
 
         }
-        public MovieDetailsItem GetDetailsAboutMovie(int movieId)
+        public async Task<MovieDetailsItem>GetDetailsAboutMovie(int movieId)
         {
-            return API.MovieHttpClient.GetDetailedMovieResults(movieId);
+            return await API.MovieHttpClient.GetDetailedMovieResults(movieId);
 
         }
 
@@ -44,7 +50,7 @@ namespace MovieGallery.Data
             foreach (var movie in movies.Take(10))
             {
                 
-                var detailsForMovie = Repo.GetDetailsAboutMovie(movie.id);
+                var detailsForMovie = Repo.GetDetailsAboutMovie(movie.id).Result;
                 detailsForMovie.Credits = Repo.GetMovieCredits(movie.id);
                 if (detailsForMovie.id != null) moviesDetailsItems.Add(detailsForMovie.id.Value, detailsForMovie);
             }
@@ -52,14 +58,14 @@ namespace MovieGallery.Data
             return moviesDetailsItems;
         }
 
-        public MovieSearchItems GetMostPopularMovies()
+        public  Task<MovieSearchItems> GetMostPopularMovies()
         {
             return API.MovieHttpClient.GetPopularMovies();
         }
 
         public Release_Dates GetBlueRayReleaseDate(int movieId)
         {
-            var result = API.MovieHttpClient.GetMovieReleaseDates(movieId);
+            var result = API.MovieHttpClient.GetMovieReleaseDates(movieId).Result;
             var releaseDates = result.results.Where(x => x.iso_3166_1 == "US").Select(x => x.release_dates).ToList()
                 .FirstOrDefault();
             return releaseDates?.Where(x => x.type == 5).FirstOrDefault();

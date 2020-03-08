@@ -23,7 +23,7 @@ namespace MovieGallery.Controllers
             }
          
             var repo = new MovieGalleryRepository();
-            var detailsAboutMovie = repo.GetDetailsAboutMovie(id);
+            var detailsAboutMovie = repo.GetDetailsAboutMovie(id).Result;
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
             detailsAboutMovie.Credits = repo.GetMovieCredits(id);
             var bluerayreleasedate = repo.GetBlueRayReleaseDate(id);
