@@ -5,8 +5,8 @@
 @{
     ViewBag.Title = "LookupActor";
     ViewBag.ShowBackBar = true;
-    
-    
+
+
 }
 
 <h2>Actor Results (Hits: @(Model.Actor.total_results))</h2>
@@ -18,7 +18,7 @@
             foreach (var actor in Model.Actor.results)
             { /*<a href=@Url.Action("Detail", new {id = movie.id})>*/
                 <div class="row row-space">
-                    <div class="col-md-3">
+                    <div class="col-md-2 actor-picture" style="padding-right: 5px;">
                         @if (string.IsNullOrEmpty(actor.profile_path))
                         {
                             <img src="~/Images/noimage.jpg"
@@ -26,23 +26,25 @@
                         }
                         else
                         {
-                            <img src="@($"http://image.tmdb.org/t/p/w185/{actor.profile_path}")"
+                            <img src="@($"http://image.tmdb.org/t/p/w185{actor.profile_path}")"
                                  alt="@actor.name" class="poster img-responsive" />
                         }
 
                     </div>
                     <div class="col-md-9">
                         <div class="well">
-                            <h3><label>Actor:&nbsp;</label>@actor.name</h3>
-                            <h5><label>Popularity:&nbsp;</label>@actor.popularity</h5>
+                            <h3><label>Actor&nbsp;</label>@actor.name</h3>
+                            <h5><label>Popularity:&nbsp;</label><span class="highlight">@actor.popularity</span></h5>
 
-                            @if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dobb ) && actor.ActorDetails?.deathday != null)
+                            @if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dobb) && actor.ActorDetails?.deathday != null)
                             {
                                 Int32.TryParse(actor.ActorDetails.deathday.Replace("-", ""), out int dead);
                                 int.Parse(DateTime.Now.ToString("yyyyMMdd"));
                                 int age = (dead - dobb) / 10000;
                                 <h5><label>Born:&nbsp;</label>@($"{actor.ActorDetails?.birthday}")</h5>
                                 <h5><label>Dead:&nbsp;</label>@($"{age}")</h5>
+                                <h5><label>From:&nbsp;</label>@(actor.ActorDetails?.place_of_birth)</h5>
+                                <h5><label>Biography:&nbsp; </label></h5><p>@($"{actor.ActorDetails?.biography}")</p>
                             }
                             //Alive
                             else if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dob))
@@ -51,20 +53,36 @@
                                 int age = (now - dob) / 10000;
                                 <h5><label>Age:&nbsp;</label>@($"{age} ({actor.ActorDetails?.birthday})")</h5>
                             }
-
-                            <h5><label>Biography:&nbsp; </label>@($"{actor.ActorDetails?.biography}")</h5>
+                            <h5><label>From:&nbsp;</label>@(actor.ActorDetails?.place_of_birth ?? "N/A" )</h5>
+                            <h5><label>Biography:&nbsp; </label></h5><p>@(actor.ActorDetails?.biography ?? "N/A")</p>
 
                         </div>
                         <h3>Most Known for...</h3>
                         @foreach (var movie in actor.known_for)
-                        {
-                            <h4><label><a class="slimy" href=@Url.Action("Detail", new {id = movie.id})>@($"{movie.title} {movie.release_date?.Substring(0,4)}")</a></label></h4>
-                            <a class="slimy" href=@Url.Action("Detail", new {id = movie.id})>
-                                <p>@movie.overview</p>
+                        {<div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 grid-padding-0">
+                                        <div class="media">
 
-                            </a>
-                            @:<hr>
+                                            <div class="media-left">
+                                                <a class="slimy" href=@Url.Action("Detail", new {id = movie.id})>
+                                                    <img class="media-object" src="@($"http://image.tmdb.org/t/p/w185/{movie.poster_path}")" alt="Movie Picture">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a class="slimy" href=@Url.Action("Detail", new {id = movie.id})>
+                                                <h4><label class="highlight">@($"{movie.title ?? "N/A"} {movie.release_date?.Substring(0, 4)}")</label> (<i class="fa fa-star fa - lg"></i><label>&nbsp;</label>@(movie.vote_average))</h4>
+                                                    <p>@movie.overview</p>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
                         }
+                      
                     </div>
 
                 </div>

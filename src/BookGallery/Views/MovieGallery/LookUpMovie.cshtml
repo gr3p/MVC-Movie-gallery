@@ -24,8 +24,17 @@
                 { <a href=@Url.Action("Detail", new {id = movie.id})>
                         <div class="row row-space">
                             <div class="col-md-3">
-                                <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
-                                     alt="@movie.title" class="poster img-responsive" />
+                                @if (string.IsNullOrEmpty(movie.poster_path))
+                                {
+                                    <img src="~/Images/noimage.jpg"
+                                         alt="@movie.title" class="poster img-responsive" />
+                                }
+                                else
+                                {
+                                    <img src="http://image.tmdb.org/t/p/w185/@movie.poster_path"
+                                         alt="@movie.title" class="poster img-responsive" />
+                                }
+
                             </div>
                             <div class="col-md-9">
                                 <div class="well">

@@ -358,3 +358,33 @@ textarea {
         line-height: initial;
         vertical-align: initial;
     }
+
+
+    .highlight {
+        color: #089000;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+@media all and (max-width: 480px) {
+    .media-body {
+        float: left;
+        width: initial;
+    }
+   
+}
+
+@media all and (max-width: 970px) {
+
+    .actor-picture {
+        padding-bottom: 15px;
+    }
+
+}
+
+
+.grid-padding-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+
+}

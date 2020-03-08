@@ -19,7 +19,7 @@ namespace MovieGallery.API
     {
         private static string ApiKey => "76b3c69a02263d0d7ff63b212d1e2c40";
 
-        private static WebClient webc = new WebClient();
+        
         /// <summary>
         /// API Resources here: https://developers.themoviedb.org/ och https://www.themoviedb.org/documentation/api
         /// API KEY: 76b3c69a02263d0d7ff63b212d1e2c40
@@ -75,17 +75,17 @@ namespace MovieGallery.API
                           $"&release_date.lte={DateTime.Today:yyyy-MM-dd}" +
                           $"&with_release_type=5";
 
-
+                var webc = new WebClient();
                 var searchResult = webc.DownloadData(url);
                 webc.Dispose();
-                var serializ = new JsonSerializer();
+                var jsonSerializer = new JsonSerializer();
                 using (var stream = new MemoryStream(searchResult))
                 using (var reader = new StreamReader(stream))
 
-                using (var jsonreader = new JsonTextReader(reader))
+                using (var jsonReader = new JsonTextReader(reader))
                 {
 
-                    results = serializ.Deserialize<MovieSearchItems>(jsonreader);
+                    results = jsonSerializer.Deserialize<MovieSearchItems>(jsonReader);
                 }
             
             return results;
@@ -103,6 +103,7 @@ namespace MovieGallery.API
                           $"&release_date.gte={tommorow}" +
                           $"&with_release_type=5";
 
+                var webc = new WebClient();
                 var searchResult = webc.DownloadData(url);
                 webc.Dispose();
                 var serializ = new JsonSerializer();
@@ -147,6 +148,7 @@ namespace MovieGallery.API
             
                 var url = $"{apiUrl}";
 
+                var webc = new WebClient();
                 var searchResult = webc.DownloadData(url);
                 webc.Dispose();
                 var jsonSerializer = new JsonSerializer();
