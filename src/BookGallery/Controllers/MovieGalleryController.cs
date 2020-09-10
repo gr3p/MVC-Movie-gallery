@@ -25,7 +25,7 @@ namespace MovieGallery.Controllers
             var repo = new MovieGalleryRepository();
             var detailsAboutMovie = repo.GetDetailsAboutMovie(id).Result;
             detailsAboutMovie.Trailers = repo.GetMovieTrailers(id);
-            detailsAboutMovie.Credits = repo.GetMovieCredits(id);
+            detailsAboutMovie.Credits =  repo.GetMovieCredits(id).Result;
             var bluerayreleasedate = repo.GetBlueRayReleaseDate(id);
             detailsAboutMovie.bluerayrelease = bluerayreleasedate != null ? bluerayreleasedate.release_date.ToString("yyyy-MM-dd") : "N/A";
             

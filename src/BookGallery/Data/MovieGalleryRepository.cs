@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -17,12 +18,13 @@ namespace MovieGallery.Data
         public MovieGenres MovieGenre { get; set; }
 
         private MovieGalleryRepository Repo { get; set; }
-        public  MovieGalleryRepository()
+        public MovieGalleryRepository()
         {
             Repo = this;
             ServicePointManager.ServerCertificateValidationCallback =
-                delegate(object sender, X509Certificate certificate, X509Chain chain,
-                    SslPolicyErrors sslPolicyErrors) { return true; };
+                delegate (object sender, X509Certificate certificate, X509Chain chain,
+                    SslPolicyErrors sslPolicyErrors)
+                { return true; };
 
             GetMovieGenres();
         }
@@ -34,31 +36,18 @@ namespace MovieGallery.Data
 
         public MovieSearchItems SearchForAMovie(string SearchText)
         {
-            return  API.MovieHttpClient.GetMovieResults(SearchText).Result;
+            return API.MovieHttpClient.GetMovieResults(SearchText).Result;
 
         }
-        public async Task<MovieDetailsItem>GetDetailsAboutMovie(int movieId)
+        public async Task<MovieDetailsItem> GetDetailsAboutMovie(int movieId)
         {
             return await API.MovieHttpClient.GetDetailedMovieResults(movieId);
 
         }
 
-        public Dictionary<int, MovieDetailsItem> GetDetailsAboutMovies(List<MovieItem> movies)
-        {
-            Dictionary<int, MovieDetailsItem> moviesDetailsItems = new Dictionary<int, MovieDetailsItem>();
 
-            foreach (var movie in movies.Take(10))
-            {
-                
-                var detailsForMovie = Repo.GetDetailsAboutMovie(movie.id).Result;
-                detailsForMovie.Credits = Repo.GetMovieCredits(movie.id);
-                if (detailsForMovie.id != null) moviesDetailsItems.Add(detailsForMovie.id.Value, detailsForMovie);
-            }
 
-            return moviesDetailsItems;
-        }
-
-        public  Task<MovieSearchItems> GetMostPopularMovies()
+        public Task<MovieSearchItems> GetMostPopularMovies()
         {
             return API.MovieHttpClient.GetPopularMovies();
         }
@@ -85,9 +74,51 @@ namespace MovieGallery.Data
             return API.MovieHttpClient.GetMovieTrailers(movieId);
         }
 
-        public CreditsModel GetMovieCredits(int movieId)
+        public async Task<CreditsModel> GetMovieCredits(int movieId)
         {
-            return API.MovieHttpClient.GetCreditsForMovie(movieId);
+            var credits = API.MovieHttpClient.GetCreditsForMovie(movieId);
+            var imageValidatedCredits = await ActorImageExistValidator(credits);
+
+            return imageValidatedCredits;
+        }
+
+
+        private async Task<CreditsModel> ActorImageExistValidator(CreditsModel credits, string Url = "http://image.tmdb.org/t/p/w185")
+        {
+            List<Task<CreditsModel.Cast>> tasks = new List<Task<CreditsModel.Cast>>();
+            foreach (var cast in credits.cast)
+            {
+                
+               tasks.Add(Download(cast, Url));
+               
+            }
+            credits.cast = await Task.WhenAll(tasks);
+            return credits;
+
+
+        }
+        public HttpClient HttpClient { get; set; } = new HttpClient();
+        
+
+
+        private async Task<CreditsModel.Cast> Download(CreditsModel.Cast cast, string url)
+        {
+            var imageLookupURL = $"{url}{cast.profile_path}";
+            try
+            {
+                //var request = await HttpClient.GetAsync(imageLookupURL, HttpCompletionOption.ResponseHeadersRead);
+
+                var result = HttpClient.GetAsync(imageLookupURL, HttpCompletionOption.ResponseHeadersRead);
+                var response = result.Result;
+                cast.HasProfileImage = response.StatusCode == HttpStatusCode.OK;
+               
+            }
+            catch (Exception ex)
+            {
+                //TODO
+            }
+
+            return cast;
         }
 
         public ActorResultItem SearchForActors(string actorToFind, string pageIndex = "1")

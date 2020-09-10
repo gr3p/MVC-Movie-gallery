@@ -19,7 +19,10 @@ namespace MovieGallery.Models.ViewModels
         public SearchMovieViewModel(MovieGalleryRepository movieRepository, List<MovieItem> movieItems, int page, int totalPages, int totalResults)
         {
             gengres = movieRepository.MovieGenre.Genres;
-            MovieItems = new List<MovieItem>(movieItems.ToList().OrderByDescending(d => d.release_date));
+            MovieItems = new List<MovieItem>(movieItems.ToList()
+                .OrderByDescending(x => x.vote_average)
+                .ThenByDescending(d => d.popularity)
+            );
             this.page = page;
             this.total_pages = totalPages;
             this.total_results = totalResults;

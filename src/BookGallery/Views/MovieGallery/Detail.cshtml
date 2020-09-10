@@ -55,7 +55,7 @@
                     {<div class="flex2-item">
                             <a href=@Url.Action("LookUpActor","MovieGallery", new {actorToSearchFor = item.name})>
                                 <div class="image-padding">
-                                    <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") />
+                                    <img style="width: 40%; margin-bottom: 10px;" src=@( item.HasProfileImage ? $"http://image.tmdb.org/t/p/w185/{item.profile_path}" : Url.Content("~/images")+"/noimage.jpg") />
                                     <p>@item.name</p>
                                     <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
                                 </div>

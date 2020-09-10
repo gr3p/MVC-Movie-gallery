@@ -21,6 +21,8 @@ namespace MovieGallery.Models
             public string name { get; set; }
             public int order { get; set; }
             public string profile_path { get; set; }
+
+            public bool HasProfileImage { get; set; }
         }
 
     }

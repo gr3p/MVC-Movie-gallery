@@ -300,12 +300,18 @@ textarea {
 
     .video-content {
         height: 600px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+        -o-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+        box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
     }
+  
 
-    .fitvids {
-        height: 100%;
-        width: 100%;
-    }
+.fitvids {
+    height: 100%;
+    width: 100%;
+    border: 0px;
+}
 
     .image-poster-container {
         margin-bottom: 10px;
