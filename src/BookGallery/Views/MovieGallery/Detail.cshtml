@@ -5,18 +5,20 @@
     /**/
 
     ViewBag.ShowBackBar = true;
+    var noImageUrl = Url.Content("~/images") + "/noimage.jpg";
 }
 
 
 
 <div class="row">
 
-    <div class="col-md-4 ">
-        <h2>@Model.title</h2>
+    <div class="col-md-3 ">
+       
         <div class="image-poster-container">
             <img src="http://image.tmdb.org/t/p/w185/@Model.poster_path"
                  alt="@Model.title" class="img-responsive" />
-            <h5><label>Theature date:&nbsp;</label>@(Model.release_date)</h5>
+            <h3>@Model.title</h3>
+            <h5><label>Theater date:&nbsp;</label>@(Model.release_date)</h5>
             <h5><label>Blu-ray release date:&nbsp;</label>@(Model.bluerayrelease)</h5>
             <h5><i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@Model.vote_average <a href="http://www.imdb.com/title/@Model.imdb_id" alt="IMDB" target="_blank">(IMDB)</a></h5>
             <h5><label>Genre:&nbsp;</label>@String.Join(", ", Model.genres.MapGengresToString(new MovieGalleryRepository()))</h5>
@@ -34,9 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
-
-        <h3>Trailer</h3>
+    <div class="col-md-9">
         <div class="video-content">
             <iframe class="fitvids" src="https://www.youtube.com/embed/@(Model.Trailers.results.FirstOrDefault()?.key)" allowfullscreen></iframe>
         </div>
@@ -55,7 +55,7 @@
                     {<div class="flex2-item">
                             <a href=@Url.Action("LookUpActor","MovieGallery", new {actorToSearchFor = item.name})>
                                 <div class="image-padding">
-                                    <img style="width: 40%; margin-bottom: 10px;" src=@( item.HasProfileImage ? $"http://image.tmdb.org/t/p/w185/{item.profile_path}" : Url.Content("~/images")+"/noimage.jpg") />
+                                    <img style="width: 40%; margin-bottom: 10px;" src=@($"http://image.tmdb.org/t/p/w185/{item.profile_path}") onerror="this.onerror=null; this.src='@noImageUrl'">
                                     <p>@item.name</p>
                                     <p style="color: #0a5d00; font-weight: bold;">As @item.character</p>
                                 </div>

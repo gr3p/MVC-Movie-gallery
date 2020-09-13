@@ -77,9 +77,10 @@ namespace MovieGallery.Data
         public async Task<CreditsModel> GetMovieCredits(int movieId)
         {
             var credits = API.MovieHttpClient.GetCreditsForMovie(movieId);
-            var imageValidatedCredits = await ActorImageExistValidator(credits);
+            //Skip this since it to slow.
+            //var imageValidatedCredits = await ActorImageExistValidator(credits);
 
-            return imageValidatedCredits;
+            return credits;
         }
 
 
