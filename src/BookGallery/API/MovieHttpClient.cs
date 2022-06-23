@@ -22,17 +22,17 @@ namespace MovieGallery.API
 {
     public class MovieHttpClient
     {
-        private static string ApiKey => "76b3c69a02263d0d7ff63b212d1e2c40";
+        private static string ApiKey => System.Configuration.ConfigurationManager.AppSettings["API-key"];
 
         public static HttpClient HttpClient { get; set; } = new HttpClient();
 
         /// <summary>
         /// API Resources here: https://developers.themoviedb.org/ och https://www.themoviedb.org/documentation/api
-        /// API KEY: 76b3c69a02263d0d7ff63b212d1e2c40
+        ///
         /// </summary>
         /// <param name="searchFor"></param>
         /// <returns></returns>
-        /// https://api.themoviedb.org/3/search/movie?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query=coco&page=1&include_adult=false
+       
         public static async Task<MovieSearchItems> GetMovieResults(string searchFor)
         {
             var url =
@@ -86,7 +86,6 @@ namespace MovieGallery.API
 
             using (var jsonReader = new JsonTextReader(reader))
             {
-
                 results = jsonSerializer.Deserialize<MovieSearchItems>(jsonReader);
             }
 
@@ -130,18 +129,18 @@ namespace MovieGallery.API
         public static CreditsModel GetCreditsForMovie(int movieId)
         {
             return DownloadDataFromApi<CreditsModel>(
-                 $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key=76b3c69a02263d0d7ff63b212d1e2c40");
+                 $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}");
         }
         public static ActorResultItem GetActors(string actorToFind, string pageIndex)
         {
             return DownloadDataFromApi<ActorResultItem>(
-                $"https://api.themoviedb.org/3/search/person?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US&query={actorToFind}&page={pageIndex}&include_adult=false");
+                $"https://api.themoviedb.org/3/search/person?api_key={ApiKey}&language=en-US&query={actorToFind}&page={pageIndex}&include_adult=false");
         }
 
         public static ActorDetails GetActorDetails(int actorId)
         {
             return DownloadDataFromApi<ActorDetails>(
-                $"https://api.themoviedb.org/3/person/{actorId}?api_key=76b3c69a02263d0d7ff63b212d1e2c40&language=en-US");
+                $"https://api.themoviedb.org/3/person/{actorId}?api_key={ApiKey}&language=en-US");
         }
 
         public static T DownloadDataFromApi<T>(string apiUrl) where T : class
@@ -186,7 +185,7 @@ namespace MovieGallery.API
             }
             catch (Exception e)
             {
-                Debug.WriteLine("FELET:" + e);
+                Debug.WriteLine("The Error:" + e);
             }
 
             return results;
@@ -200,17 +199,6 @@ namespace MovieGallery.API
 
             return result;
         }
-
-        ///DVD : release_dates
-        //157336 Interstellar
-        //354912 COCO new.
-        //http://api.themoviedb.org/3/movie/157336/videos?api_key=76b3c69a02263d0d7ff63b212d1e2c40
-        //https://www.youtube.com/watch?v=ePbKGoIGAXY
-        //https://www.themoviedb.org/talk/5451ec02c3a3680245005e3c
-
-        //Release Date for coco to dvd?
-        //http://api.themoviedb.org/3/movie/354912/release_dates?api_key=76b3c69a02263d0d7ff63b212d1e2c40
-
 
     }
 }
