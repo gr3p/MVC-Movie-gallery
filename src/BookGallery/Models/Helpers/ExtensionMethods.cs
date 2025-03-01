@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using System.Text;
+using System.Web;        
+using System.Web.Mvc;            
 using MovieGallery.Data;
 
 namespace MovieGallery.Models.Helpers
 {
     public static class ExtensionMethods
     {
-        public static List<string> MapGengresToString(this Genre[] genres, MovieGalleryRepository movieRepo)
+        public static MvcHtmlString MapGenresToHtmlString(
+            this Genre[] genres, 
+            MovieGalleryRepository movieRepo)
         {
-            var resultList = new List<string>();
-            foreach (var genreId in genres)
-            {   
-                resultList.Add(movieRepo.MovieGenre.Genres.FirstOrDefault(z => z.Id == genreId.id)?.Name);
+            var sb = new StringBuilder();
+            
+            foreach (var genre in genres)
+            {
+                var genreName = movieRepo.MovieGenre
+                    .Genres
+                    .FirstOrDefault(z => z.Id == genre.id)?.Name;
+                
+                if (!string.IsNullOrEmpty(genreName))
+                {
+                    sb.Append($"<span class=\"genre-badge\">{HttpUtility.HtmlEncode(genreName)}</span>");
+                }
             }
-
-            return resultList;
+            
+            return new MvcHtmlString(sb.ToString());
         }
     }
 }
-
-// using (WebClient client = new WebClient())
-//{

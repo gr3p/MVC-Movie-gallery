@@ -3,21 +3,28 @@ body {
     padding-bottom: 20px;
     /* -webkit-text-size-adjust: none!important; */
 }
+
 a.slimy:hover {
     color: #089000;
     text-decoration: none;
 }
-.no-padding{ padding: 0px;}
+
+.no-padding {
+    padding: 0px;
+}
 
 .no-padding--left {
     padding-left: 0px;
 }
+
 .no-padding--right {
     padding-right: 0px;
 }
+
 .no-padding--top {
     padding-top: 0px;
 }
+
 .no-padding--bottom {
     padding-bottom: 0px;
 }
@@ -27,6 +34,7 @@ a.slimy:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .slimy-logo {
     font-family: 'Creepster', cursive;
     background-color: white;
@@ -37,7 +45,33 @@ a.slimy:hover {
     width: 300px;
 }
 
-.slimy-button {background-image: linear-gradient(chartreuse, lightgreen 6%, chartreuse);color: black;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;border-radius: 2px;cursor: pointer;width: 91px;float: left;height: 39px;border-color: #474949;border: 1px;}
+.slimy-button {
+    background-image: linear-gradient(chartreuse, lightgreen 6%, chartreuse);
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 91px;
+    float: left;
+    height: 39px;
+    border-color: #474949;
+    border: 1px;
+}
+.slimy-color {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, chartreuse, lightgreen 6%, chartreuse);
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
+}
 
 .glowing-border {
     border: 2px solid chartreuse;
@@ -56,6 +90,7 @@ a.slimy:hover {
     font-weight: bold;
     font-size: 3rem;
 }
+
 .imdb {
     background-color: #E8B708;
     padding: 0px 5px;
@@ -77,6 +112,7 @@ a.slimy:hover {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -90,13 +126,14 @@ textarea {
     height: 35px;
     border-radius: 2px;
 }
+
 .container {
     margin-bottom: 15px;
     margin-top: 15px;
 }
 
 /* Backbar Styles */
-.backbar{
+.backbar {
     width: 100%;
     /* background-color: #555; */
     margin-top: -5px;
@@ -105,38 +142,42 @@ textarea {
     padding-bottom: 5px;
     /* background-image: url(/images/graycharkboard.jpg); */
 }
-  .backbar .btn{
-    margin-top: 4px;
-  }
+
+    .backbar .btn {
+        margin-top: 4px;
+    }
 
 
 
 /* Series List Styles */
-.series-list{
-  padding: 0;
+.series-list {
+    padding: 0;
 }
 
-.series-list li{
-  list-style: none;
-  border-bottom: 1px #ddd solid;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  }
+    .series-list li {
+        list-style: none;
+        border-bottom: 1px #ddd solid;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
 
-.series-list li:last-child{
-  border: none;
-}
+        .series-list li:last-child {
+            border: none;
+        }
 
 .btn-menu {
     margin-right: 5px;
     margin-top: 5px;
 }
-.btn-menu.active-menu {
-    color: chartreuse;
-}
+
+    .btn-menu.active-menu {
+        color: chartreuse;
+    }
+
 .search-input {
     margin-top: 5px;
 }
+
 .logo-wrapper {
     /* margin-bottom: 10px; */
     /* margin-right: 5px; */
@@ -145,28 +186,31 @@ textarea {
     height: 44px;
     width: 164px;
 }
+
 .flex-container {
     margin-top: 5px;
     color: black;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     /* justify-content: left; */
     /* float: left; */
     /* clear: both; */
 }
+
 .flex-line {
     width: 100%
-    
 }
+
 .flex-item {
     /* border:2px red solid; */
     /* flex-grow:0; */
     /* width: 45%; */
     justify-content: left;
 }
-.flex-item.small {
-    max-width: 98px;
-}
+
+    .flex-item.small {
+        max-width: 98px;
+    }
 
 .flex2-item {
     width: 100%
@@ -177,135 +221,135 @@ textarea {
     flex-wrap: wrap;
 }
 
-.flex2-container > div {
-    flex: 0 50%;
- 
-    box-sizing: border-box
-}
+    .flex2-container > div {
+        flex: 0 33%;
+        box-sizing: border-box
+    }
+
 @media all and (max-width: 40em) {
     .flex2-container > div {
         flex: 0 100%;
     }
 }
 
-    .search__label {
-        color: white;
-        margin-top: 0px;
-        padding-top: 5px;
+.search__label {
+    color: white;
+    margin-top: 0px;
+    padding-top: 5px;
+}
+
+.search-wrapper, search-center, input {
+    color: black;
+}
+
+.well h4 {
+    color: black;
+}
+
+#custom-search-input {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
     }
 
-    .search-wrapper, search-center, input {
-        color: black;
-    }
-
-    .well h4 {
-        color: black;
-    }
-
-    #custom-search-input {
-        margin: 0;
-        margin-top: 10px;
-        padding: 0;
-    }
-
-        #custom-search-input .search-query {
-            padding-right: 3px;
-            padding-right: 4px \9;
-            padding-left: 3px;
-            padding-left: 4px \9;
-            /* IE7-8 doesn't have border-radius, so don't indent the padding */
-            margin-bottom: 0;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-        }
-
-        #custom-search-input button {
-            border: 0;
-            background: none;
-            /** belows styles are working good */
-            padding: 2px 5px;
-            margin-top: 2px;
-            position: relative;
-            left: -28px;
-            /* IE7-8 doesn't have border-radius, so don't indent the padding */
-            margin-bottom: 0;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            color: #D9230F;
-        }
-
-    .search-query:focus + button {
-        z-index: 3;
-    }
-
-    input[type=text] {
-        border-radius: 1px;
-        height: 38px;
-        font-size: 14px;
-        box-shadow: none;
-        line-height: 100%;
-        padding: 5px;
-        /* padding-right: 5px; */
-        margin-right: 5px;
+    #custom-search-input button {
         border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: #D9230F;
     }
 
+.search-query:focus + button {
+    z-index: 3;
+}
 
-    .row-space {
-        margin-top: 30px;
-    }
+input[type=text] {
+    border-radius: 1px;
+    height: 38px;
+    font-size: 14px;
+    box-shadow: none;
+    line-height: 100%;
+    padding: 5px;
+    /* padding-right: 5px; */
+    margin-right: 5px;
+    border: 0;
+}
 
-    i.fa-star {
-        color: orange;
-        display: inline;
-        size: 3px;
-        font-size: 15px;
-    }
 
-    .list {
-        display: flex;
-        flex-wrap: wrap;
-    }
+.row-space {
+    margin-top: 30px;
+}
 
+i.fa-star {
+    color: orange;
+    display: inline;
+    size: 3px;
+    font-size: 15px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-item {
+    display: flex;
+    padding: 0.5em;
+    width: 100%;
+}
+
+@media all and (min-width: 40em) {
     .list-item {
-        display: flex;
-        padding: 0.5em;
-        width: 100%;
+        width: 50%;
+    }
+}
+
+@media all and (min-width: 60em) {
+    .list-item {
+        width: 33.33%;
+    }
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 100%;
+}
+
+    .list-content p {
+        flex: 1 0 auto;
     }
 
-    @media all and (min-width: 40em) {
-        .list-item {
-            width: 50%;
-        }
-    }
+.video-content {
+    height: 600px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+    -o-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
+}
 
-    @media all and (min-width: 60em) {
-        .list-item {
-            width: 33.33%;
-        }
-    }
-
-    .list-content {
-        display: flex;
-        flex-direction: column;
-        padding: 1em;
-        width: 100%;
-    }
-
-        .list-content p {
-            flex: 1 0 auto;
-        }
-
-    .video-content {
-        height: 600px;
-        -moz-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
-        -webkit-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
-        -o-box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
-        box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 10px;
-    }
-  
 
 .fitvids {
     height: 100%;
@@ -313,71 +357,70 @@ textarea {
     border: 0px;
 }
 
-    .image-poster-container {
-        margin-bottom: 10px;
+.image-poster-container {
+    margin-bottom: 10px;
+}
+
+@media all and (max-width: 736px) {
+    .flex-container {
+        flex-direction: column;
     }
+}
 
-    @media all and (max-width: 736px) {
-        .flex-container {
-            flex-direction: column;
-        }
-    }
+@media all and (max-width: 480px) {
+}
 
-    @media all and (max-width: 480px) {
-    }
+.img-container {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
 
-    .img-container {
-        float: left;
-        width: 33.33%;
-        padding: 5px;
-    }
+.image-padding {
+    padding: 5px;
+}
 
-    .image-padding {
-        padding: 5px;
-    }
-
-    .clearfix::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 
-    a {
-        color: #0a5d00;
-        text-decoration-color: #0a5d00 !important;
-    }
+a {
+    color: #0a5d00;
+    text-decoration-color: #0a5d00 !important;
+}
 
-    h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
-        color: #089000;
-    }
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
+    color: #089000;
+}
 
-    .detailInfo {
-        line-height: 5px;
-    }
+.detailInfo {
+    line-height: 5px;
+}
 
-    .filler {
-        height: 40px;
-    }
+.filler {
+    height: 40px;
+}
 
-    .fa-lg {
-        line-height: initial;
-        vertical-align: initial;
-    }
+.fa-lg {
+    line-height: initial;
+    vertical-align: initial;
+}
 
 
-    .highlight {
-        color: #089000;
-        font-size: 15px;
-        font-weight: bold;
-    }
+.highlight {
+    color: #089000;
+    font-size: 15px;
+    font-weight: bold;
+}
 
 @media all and (max-width: 480px) {
     .media-body {
         float: left;
         width: initial;
     }
-   
 }
 
 @media all and (max-width: 970px) {
@@ -385,12 +428,19 @@ textarea {
     .actor-picture {
         padding-bottom: 15px;
     }
-
 }
 
+.genre-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 4px;
+    border-radius: 15px;
+    color: black; 
+    font-size: 14px;
+    background-image: linear-gradient(chartreuse, lightgreen 6%, chartreuse); 
+}
 
 .grid-padding-0 {
     padding-left: 0px;
     padding-right: 0px;
-
 }
