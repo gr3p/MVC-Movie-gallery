@@ -72,7 +72,12 @@
                                             </div>
                                             <div class="media-body">
                                                 <a class="slimy" href=@Url.Action("Detail", new {id = movie.id})>
-                                                <h4><label class="highlight">@($"{movie.title ?? "N/A"} {movie.release_date?.Substring(0, 4)}")</label> (<i class="fa fa-star fa - lg"></i><label>&nbsp;</label>@(movie.vote_average))</h4>
+                                                    <h4>
+                                                        <label class="highlight">
+                                                            @($"{movie.title ?? "N/A"} {(movie.release_date != null && movie.release_date.Length >= 4 ? movie.release_date.Substring(0, 4) : "N/A")}")
+                                                        </label>
+                                                        (<i class="fa fa-star fa-lg"></i><label>&nbsp;</label>@(movie.vote_average))
+                                                    </h4>
                                                     <p>@movie.overview</p>
                                                 </a>
                                             </div>
