@@ -444,3 +444,11 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover {
     padding-left: 0px;
     padding-right: 0px;
 }
+.green-star {
+    display: inline-block;
+    background-image: linear-gradient(to right, chartreuse, lightgreen 6%, chartreuse);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 2px;
+    font-size: 18px; 
+}

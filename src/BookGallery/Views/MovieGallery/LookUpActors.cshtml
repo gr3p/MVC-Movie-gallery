@@ -1,4 +1,5 @@
 @using MovieGallery.Models;
+@using MovieGallery.Models.Helpers
 @using MovieGallery.Models.ViewModels;
 
 @model  SearchActorViewModel<ActorResultItem>
@@ -16,7 +17,7 @@
         @if (Model?.Actor.results != null)
         {
             foreach (var actor in Model.Actor.results)
-            { /*<a href=@Url.Action("Detail", new {id = movie.id})>*/
+            { 
                 <div class="row row-space">
                     <div class="col-md-2 actor-picture" style="padding-right: 5px;">
                         @if (string.IsNullOrEmpty(actor.profile_path))
@@ -34,7 +35,7 @@
                     <div class="col-md-9">
                         <div class="well">
                             <h3><label>Actor&nbsp;</label>@actor.name</h3>
-                            <h5><label>Popularity:&nbsp;</label><span class="highlight">@actor.popularity</span></h5>
+                            <h5><label>Popularity:&nbsp;</label><span class="highlight">@actor.popularity.RenderPopularityStars()</span></h5>
 
                             @if (Int32.TryParse(actor.ActorDetails?.birthday?.Replace("-", ""), out int dobb) && actor.ActorDetails?.deathday != null)
                             {
